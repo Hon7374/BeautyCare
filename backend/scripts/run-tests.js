@@ -17,6 +17,8 @@ const smokeSuites = [
   'tests/admin.users.no-db.test.js',
   'tests/payments.subscription-change.no-db.test.js',
   'tests/payment-mock-xss.no-db.test.js',
+  'tests/security-html-sanitizer.no-db.test.js',
+  'tests/check-semgrep-result.no-db.test.js',
   'tests/booking-validation.no-db.test.js',
   'tests/payment-input-validation.no-db.test.js'
 ];

@@ -9,7 +9,7 @@ const db = require('../db');
 const { sql } = db;
 const { verify, JWT_SECRET } = require('../middleware/auth');
 const { audit } = require('../utils/audit');
-const { durationToMs, randomToken, sha256, createCsrfToken, setAuthCookies, clearAuthCookies, setCsrfCookie } = require('../utils/security');
+const { durationToMs, randomToken, sha256, sanitizeHtml, createCsrfToken, setAuthCookies, clearAuthCookies, setCsrfCookie } = require('../utils/security');
 const { sendEmail } = require('../utils/mailer');
 const { authDemoMode, emailDeliveryMode, performanceTestMode, publicAppUrl } = require('../utils/runtime');
 
@@ -196,20 +196,25 @@ async function deliverAuthTokenMessage({ type, to, token, expiresAt, actionUrl }
   const heading = type === 'verify-email'
     ? 'Xac minh dia chi email'
     : 'Dat lai mat khau';
+  const htmlHeading = sanitizeHtml(heading);
+  const htmlType = sanitizeHtml(type);
+  const htmlActionUrl = sanitizeHtml(actionUrl);
+  const htmlToken = sanitizeHtml(token);
+  const htmlExpiresAt = sanitizeHtml(expiresAt.toISOString());
 
   const html = `
     <div style="font-family:Arial,Helvetica,sans-serif;line-height:1.6;color:#1f2937">
-      <h2 style="margin:0 0 16px">${heading}</h2>
+      <h2 style="margin:0 0 16px">${htmlHeading}</h2>
       <p>Xin chao,</p>
-      <p>He thong BeautyCare da tao mot yeu cau <b>${type}</b> cho tai khoan cua ban.</p>
+      <p>He thong BeautyCare da tao mot yeu cau <b>${htmlType}</b> cho tai khoan cua ban.</p>
       <p>
-        <a href="${actionUrl}" style="display:inline-block;padding:10px 16px;background:#111827;color:#ffffff;text-decoration:none;border-radius:8px">
+        <a href="${htmlActionUrl}" style="display:inline-block;padding:10px 16px;background:#111827;color:#ffffff;text-decoration:none;border-radius:8px">
           Mo lien ket
         </a>
       </p>
       <p>Neu can nhap tay, su dung token sau:</p>
-      <pre style="padding:12px;background:#f3f4f6;border-radius:8px;overflow:auto">${token}</pre>
-      <p>Het han luc: ${expiresAt.toISOString()}</p>
+      <pre style="padding:12px;background:#f3f4f6;border-radius:8px;overflow:auto">${htmlToken}</pre>
+      <p>Het han luc: ${htmlExpiresAt}</p>
     </div>
   `.trim();
 
