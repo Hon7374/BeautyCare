@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quên mật khẩu | BeautyCare</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/auth.css">
+</head>
+<body>
+
+<div class="auth-shell">
+  <div class="auth-hero">
+    <a class="brand" href="index.html">
+      <span class="brand-badge"></span>
+      <span>BeautyCare</span>
+    </a>
+
+    <div class="hero-card" style="margin-top:18px">
+      <h1>Khôi phục mật khẩu</h1>
+      <p>Demo bảo mật: hệ thống tạo token đặt lại mật khẩu (trong thực tế sẽ gửi email).</p>
+    </div>
+  </div>
+
+  <div class="auth-panel">
+    <div class="auth-box">
+      <h2>Quên mật khẩu</h2>
+      <div class="small">Nhập email để tạo token đặt lại mật khẩu</div>
+
+      <label class="label">Email</label>
+      <input class="input" id="email" type="email" placeholder="vd: minh.anh@beautycare.vn" />
+
+      <div style="display:flex;gap:10px;margin-top:16px;flex-wrap:wrap">
+        <button class="btn primary block" id="btnSendReset">Tạo token</button>
+        <a class="btn ghost block" href="reset.html">Đặt lại mật khẩu</a>
+      </div>
+
+      <div style="margin-top:16px">
+        <label class="label">Token (demo)</label>
+        <input class="input" id="resetToken" type="text" placeholder="Token sẽ hiện ở đây" />
+        <div class="small" style="margin-top:6px;color:var(--muted)">Copy token này sang trang "Đặt lại mật khẩu".</div>
+      </div>
+
+      <div class="small" style="margin-top:16px">
+        <a href="login.html" style="text-decoration:underline;color:var(--muted)">← Quay lại đăng nhập</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="js/config.js"></script>
+<script src="js/ui.js"></script>
+<script src="js/api.js"></script>
+<script src="js/recovery.js"></script>
+<script src="js/recovery-bindings.js"></script>
+</body>
+</html>

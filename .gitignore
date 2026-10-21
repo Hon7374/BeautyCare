@@ -1,0 +1,29 @@
+# Local secrets and machine-specific configuration
+**/.env*
+!**/.env.example
+**/.runtime-test-mysql/
+**/certs/
+**/logs/
+**/outbox/
+
+# Generated dependencies and local runtimes
+**/node_modules/
+**/.venv/
+**/__pycache__/
+demo/runtime/
+results/
+
+# Historical/private evidence packages; V2 is the sanitized package
+docs/03-development/kiem-thu/ICCIT2026/FINAL_VERIFIED_EVIDENCE/
+docs/03-development/kiem-thu/ICCIT2026/FINAL_EVIDENCE_PACKAGE*
+docs/03-development/kiem-thu/ICCIT2026/BEAUTYCARE_ICCIT2026_FINAL_VERIFIED_EVIDENCE.zip
+docs/03-development/kiem-thu/ICCIT2026/raw-results/
+!docs/03-development/kiem-thu/ICCIT2026/FINAL_VERIFIED_EVIDENCE_V2/
+!docs/03-development/kiem-thu/ICCIT2026/FINAL_VERIFIED_EVIDENCE_V2/**
+docs/03-development/kiem-thu/ICCIT2026/FINAL_VERIFIED_EVIDENCE_V2/raw-results/
+!docs/03-development/kiem-thu/ICCIT2026/BEAUTYCARE_ICCIT2026_FINAL_VERIFIED_EVIDENCE_V2.zip
+
+# Local editor/OS files
+.DS_Store
+Thumbs.db
+.vscode/

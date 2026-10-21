@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Thanh toán | BeautyCare</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/layout.css">
+  <link rel="stylesheet" href="../css/components.css">
+</head>
+<body>
+
+<script src="../js/guard.js"></script>
+<header class="topbar">
+  <div class="container topbar-inner">
+    <a class="brand" href="../index.html">
+      <span class="brand-badge"></span>
+      <span>BeautyCare</span>
+    </a>
+
+    <nav class="nav">
+      <a href="services.html" data-nav="services.html">Dịch vụ</a>
+      <a href="booking.html" data-nav="booking.html">Lịch hẹn</a>
+      <a href="history.html" data-nav="history.html">Lịch sử</a>
+      <a href="membership.html" data-nav="membership.html">Thành viên</a>
+      <a href="profile.html" data-nav="profile.html">Hồ sơ</a>
+      <span class="badge" id="topbarRole">User</span>
+      <span class="badge" id="topbarMember">Bạc</span>
+      <a href="../login.html" class="js-logout btn">Đăng xuất</a>
+    </nav>
+  </div>
+</header>
+
+<section class="page">
+  <div class="container">
+    <div class="grid grid-2">
+      <div class="card">
+        <h2>Thanh toán</h2>
+        <p class="muted">Kiểm tra thông tin và áp dụng voucher (nếu có).</p>
+        <div style="margin-top:14px">
+          <label class="label">Mã voucher</label>
+          <div class="form-row">
+            <input class="input" id="voucherCode" type="text" placeholder="VD: BEAUTY10" />
+            <button class="btn" id="applyVoucher" type="button">Áp dụng</button>
+          </div>
+          <div class="small" style="margin-top:8px">Voucher hợp lệ sẽ được tính <b>trước khi</b> bạn bấm “Thanh toán”.</div>
+
+          <div style="margin-top:16px">
+            <label class="label">Cổng thanh toán (Online)</label>
+            <select class="input" id="payProvider">
+              <option value="vnpay">VNPay</option>
+              <option value="momo">MoMo</option>
+              <option value="stripe">Stripe</option>
+              <option value="paypal">PayPal</option>
+              <option value="qr">QR / Chuyển khoản</option>
+              <option value="cash">Thanh toán trực tiếp</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div id="serviceInfo"></div>
+        <hr class="sep"/>
+        <div id="bill"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script src="../js/config.js"></script>
+<script src="../js/ui.js"></script>
+<script src="../js/api.js"></script>
+<script src="../js/auth.js"></script>
+<script src="../js/paymentPage.js"></script>
+</body></html>

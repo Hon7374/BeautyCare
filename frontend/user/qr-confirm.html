@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Xác nhận thanh toán QR | BeautyCare</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/layout.css">
+  <link rel="stylesheet" href="../css/components.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="container topbar-inner">
+    <a class="brand" href="../index.html">
+      <span class="brand-badge"></span>
+      <span>BeautyCare</span>
+    </a>
+    <nav class="nav">
+      <a href="services.html">Dịch vụ</a>
+      <a href="history.html">Lịch sử</a>
+      <a href="../login.html">Đăng nhập</a>
+    </nav>
+  </div>
+</header>
+
+<section class="page">
+  <div class="container">
+    <div class="card qr-confirm-card">
+      <div class="qr-confirm-head">
+        <div>
+          <h2>Xác nhận thanh toán QR</h2>
+          <p class="muted" style="margin-top:6px">Thông tin thanh toán đã được điền sẵn từ mã QR.</p>
+        </div>
+        <div id="qrConfirmStatus" class="badge warn">Đang tải</div>
+      </div>
+
+      <div class="qr-confirm-grid">
+        <div class="qr-confirm-panel">
+          <div class="label">Mã giao dịch</div>
+          <div id="confirmRef" class="qr-confirm-value">—</div>
+
+          <div class="label" style="margin-top:16px">Số tiền</div>
+          <div id="confirmAmount" class="qr-confirm-amount">—</div>
+
+          <div class="label" style="margin-top:16px">Nội dung chuyển khoản</div>
+          <div id="confirmContent" class="qr-confirm-content">—</div>
+        </div>
+
+        <div class="qr-confirm-panel">
+          <div class="label">Người nhận</div>
+          <div class="qr-confirm-value">BeautyCare</div>
+
+          <div class="label" style="margin-top:16px">Phương thức</div>
+          <div class="qr-confirm-value">QR / Chuyển khoản</div>
+
+          <div class="label" style="margin-top:16px">Thời gian tạo</div>
+          <div id="confirmCreated" class="qr-confirm-value">—</div>
+        </div>
+      </div>
+
+      <div id="confirmMessage" class="qr-confirm-message muted">Kiểm tra đúng thông tin trước khi xác nhận thanh toán.</div>
+
+      <div class="qr-confirm-actions">
+        <a class="btn ghost" id="confirmResultLink" href="history.html">Xem lịch sử</a>
+        <button class="btn primary" id="btnConfirmQrPayment" type="button">Xác nhận thanh toán</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script src="../js/config.js"></script>
+<script src="../js/ui.js"></script>
+<script src="../js/api.js"></script>
+<script src="../js/qrConfirmPage.js"></script>
+</body>
+</html>

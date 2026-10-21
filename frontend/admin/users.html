@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin | Users</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/layout.css">
+  <link rel="stylesheet" href="../css/components.css">
+</head>
+<body>
+
+<script src="../js/guard.js"></script>
+<div class="app">
+  <aside class="sidebar">
+    <div class="brand" style="cursor:default">
+      <span class="brand-badge"></span>
+      <div>
+        <div style="font-weight:800">BeautyCare Admin</div>
+        <div class="small">Quản trị hệ thống</div>
+      </div>
+    </div>
+
+    <div class="side-footer">
+      <div class="small">Xin chào</div>
+      <div style="font-weight:700" id="topbarUserName">Admin</div>
+      <div style="margin-top:8px;display:flex;gap:8px;flex-wrap:wrap">
+        <span class="badge good" id="topbarRole">Admin</span>
+        <span class="badge good" id="topbarMember">Premium</span>
+      </div>
+    </div>
+
+    <nav class="menu" style="margin-top:14px">
+      <a href="users.html" data-nav="users.html">Users</a>
+      <a href="services.html" data-nav="services.html">Dịch vụ</a>
+      <a href="vouchers.html" data-nav="vouchers.html">Vouchers</a>
+      <a href="bookings.html" data-nav="bookings.html">Lịch hẹn</a>
+      <a href="transactions.html" data-nav="transactions.html">Giao dịch</a>
+      <a href="discounts.html" data-nav="discounts.html">Chính sách giảm</a>
+      <a href="subscriptions.html" data-nav="subscriptions.html">Membership</a>
+      <a href="reports.html" data-nav="reports.html">Báo cáo</a>
+
+      <a href="../login.html" class="js-logout btn danger" style="justify-content:center;margin-top:10px">Đăng xuất</a>
+    </nav>
+  </aside>
+
+  <main class="main">
+    <div class="container">
+      
+<div class="card hero-card">
+  <div class="card-header">
+    <div>
+      <h2>Users</h2>
+      <p class="muted">Danh sách người dùng trong hệ thống.</p>
+    </div>
+    <div style="min-width:260px">
+      <input class="input" id="searchUsers" placeholder="Tìm theo email / tên..." />
+    </div>
+  </div>
+</div>
+
+<div style="margin-top:16px">
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Tên</th>
+          <th>Email</th>
+          <th>Role</th>
+          <th>Member</th>
+          <th>Thao tac</th>
+        </tr>
+      </thead>
+      <tbody id="usersBody"></tbody>
+    </table>
+  </div>
+</div>
+
+<div class="modal-backdrop" id="modalUser">
+  <div class="modal user-form-modal">
+    <div class="modal-head">
+      <div>
+        <h3 id="userModalTitle">Xem nguoi dung</h3>
+        <div class="small muted">Xem, sua va xoa tai khoan nguoi dung.</div>
+      </div>
+      <button class="icon-btn js-close-modal" type="button" data-modal="modalUser">×</button>
+    </div>
+
+    <input type="hidden" id="usrId" />
+
+    <div class="user-summary-card">
+      <div>
+        <div class="user-summary-title" id="usrSummaryName">Tai khoan</div>
+        <div class="small muted" id="usrSummaryEmail">Khong co email</div>
+        <div class="small muted" id="usrSummaryPhone" style="margin-top:4px">Khong co SDT</div>
+      </div>
+      <div class="user-summary-badges">
+        <span class="badge" id="usrRoleBadge">Role: <b id="usrRoleText">user</b></span>
+        <span class="badge" id="usrMemberBadge">Member: <b id="usrMemberText">Bac</b></span>
+        <span class="badge" id="usrEmailVerifiedBadge">Email: <b id="usrEmailVerifiedText">Chua xac minh</b></span>
+        <span class="badge" id="usrTwofaBadge">2FA: <b id="usrTwofaText">Chua bat</b></span>
+      </div>
+    </div>
+
+    <div class="admin-user-form">
+      <div>
+        <label class="label">Ho ten *</label>
+        <input class="input" id="usrName" />
+      </div>
+      <div>
+        <label class="label">So dien thoai *</label>
+        <input class="input" id="usrPhone" type="tel" />
+      </div>
+      <div>
+        <label class="label">Email</label>
+        <input class="input" id="usrEmail" type="email" />
+      </div>
+      <div>
+        <label class="label">Role</label>
+        <select class="input" id="usrRole">
+          <option value="user">user</option>
+          <option value="admin">admin</option>
+        </select>
+      </div>
+      <div>
+        <label class="label">Member</label>
+        <select class="input" id="usrMember">
+          <option value="silver">silver</option>
+          <option value="gold">gold</option>
+          <option value="premium">premium</option>
+        </select>
+      </div>
+      <div>
+        <label class="label">Member het han</label>
+        <input class="input" id="usrMemberExpires" type="datetime-local" />
+      </div>
+    </div>
+
+    <div class="user-related-grid">
+      <div class="user-related-card"><div class="small muted">Bookings</div><b id="usrBookingsCount">0</b></div>
+      <div class="user-related-card"><div class="small muted">Orders</div><b id="usrOrdersCount">0</b></div>
+      <div class="user-related-card"><div class="small muted">Payments</div><b id="usrPaymentsCount">0</b></div>
+      <div class="user-related-card"><div class="small muted">Subscriptions</div><b id="usrSubscriptionsCount">0</b></div>
+      <div class="user-related-card"><div class="small muted">Transactions</div><b id="usrTransactionsCount">0</b></div>
+      <div class="user-related-card"><div class="small muted">Member expiry</div><b id="usrMemberExpiresText">Chua dat</b></div>
+    </div>
+
+    <div class="modal-actions">
+      <button class="btn js-close-modal" type="button" data-modal="modalUser">Dong</button>
+      <button class="btn danger" type="button" id="btnDeleteUserModal">Xoa</button>
+      <button class="btn" type="button" id="btnEditUserMode">Chinh sua</button>
+      <button class="btn primary" type="button" id="btnSaveUser" hidden>Luu</button>
+    </div>
+  </div>
+</div>
+
+    </div>
+  </main>
+</div>
+<script src="../js/config.js"></script>
+<script src="../js/ui.js"></script>
+<script src="../js/api.js"></script>
+<script src="../js/auth.js"></script>
+<script src="../js/admin.js"></script>
+</body></html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Đăng ký | BeautyCare</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/auth.css">
+</head>
+<body>
+
+<div class="auth-shell">
+  <div class="auth-hero">
+    <a class="brand" href="index.html">
+      <span class="brand-badge"></span>
+      <span>BeautyCare</span>
+    </a>
+
+    <div class="hero-card" style="margin-top:18px">
+      <h1>Tạo tài khoản mới</h1>
+      <p>Sau khi đăng ký, hệ thống sẽ tự đăng nhập và chuyển đến trang dịch vụ.</p>
+
+      <div class="hero-meta">
+        <span class="badge">Member mặc định: Bạc (5%)</span>
+        <span class="badge">Voucher demo: BEAUTY10</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="auth-panel">
+    <div class="auth-box">
+      <h2>Đăng ký</h2>
+      <div class="small">Tạo tài khoản để bắt đầu</div>
+
+      <label class="label">Họ tên</label>
+      <input class="input" id="name" type="text" placeholder="vd: Mai Phương" autocomplete="name" />
+
+      <label class="label">Số điện thoại</label>
+      <input class="input" id="phone" type="tel" placeholder="vd: 0912345678" autocomplete="tel" />
+
+      <label class="label">Email <span class="small" style="opacity:.8">(không bắt buộc)</span></label>
+      <input class="input" id="email" type="email" placeholder="vd: minh.anh@beautycare.vn" autocomplete="email" />
+
+      <label class="label">Mật khẩu</label>
+      <input class="input" id="password" type="password" placeholder="Ít nhất 8 ký tự, có chữ hoa/thường/số" autocomplete="new-password" />
+
+      <div style="display:flex;gap:10px;margin-top:16px;flex-wrap:wrap">
+        <button class="btn primary block" id="btnRegister">Đăng ký</button>
+        <a class="btn ghost block" href="login.html">Đã có tài khoản</a>
+      </div>
+
+      <div class="small" style="margin-top:16px">
+        <a href="index.html" style="text-decoration:underline;color:var(--muted)">← Quay lại trang chủ</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="js/config.js"></script>
+<script src="js/ui.js"></script>
+<script src="js/api.js"></script>
+<script src="js/auth.js"></script>
+</body>
+</html>

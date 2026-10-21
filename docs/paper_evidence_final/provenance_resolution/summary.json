@@ -1,0 +1,20 @@
+{
+  "status": "PARTIALLY RESOLVED",
+  "audit_date": "2026-10-17",
+  "records": ["A_historical_reported_json_missing", "B_historical_interruption_prose", "C_current_raw_json"],
+  "historical_a_raw_artifact_present": false,
+  "historical_b_raw_console_present": false,
+  "current_c_artifact": "results/iccIT-replication/k6-load-400vus-run1.json",
+  "current_c_vus": 400,
+  "current_c_duration_seconds": 300.29285263,
+  "current_c_requests": 302936,
+  "current_c_http_200": 302936,
+  "current_c_http_failure_rate": 0,
+  "a_b_same_run_proven": false,
+  "a_b_distinct_runs_proven": false,
+  "configuration_change_proven": false,
+  "manifest_tool": "tools/new-experiment-manifest.ps1",
+  "benchmark_executed_by_manifest_tool": false,
+  "raw_originals_modified": false,
+  "next_action": "Use Start/Finalize manifest workflow for any future run; do not merge A, B, and C."
+}

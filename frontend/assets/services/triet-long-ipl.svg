@@ -1,0 +1,16 @@
+<svg width="1200" height="720" viewBox="0 0 1200 720" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="720" rx="40" fill="#FCF8FF"/>
+  <circle cx="210" cy="154" r="120" fill="#D9C2F7" fill-opacity="0.48"/>
+  <circle cx="994" cy="552" r="182" fill="#EEDCFD" fill-opacity="0.56"/>
+  <rect x="116" y="120" width="968" height="482" rx="44" fill="#FFFFFF" fill-opacity="0.8"/>
+  <rect x="250" y="230" width="240" height="240" rx="48" fill="#EEE3FB"/>
+  <rect x="340" y="262" width="60" height="170" rx="30" fill="#A780D7"/>
+  <circle cx="370" cy="250" r="34" fill="#F6D792"/>
+  <path d="M570 418L650 238L730 418" stroke="#D39B2E" stroke-width="18" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect x="790" y="230" width="190" height="28" rx="14" fill="#8A63C4"/>
+  <rect x="790" y="282" width="150" height="18" rx="9" fill="#B08EDC"/>
+  <rect x="790" y="328" width="174" height="18" rx="9" fill="#D8C3EF"/>
+  <rect x="790" y="382" width="144" height="18" rx="9" fill="#EDE3F8"/>
+  <text x="164" y="618" fill="#563B7D" font-family="Poppins, Arial, sans-serif" font-size="60" font-weight="700">Triệt lông IPL</text>
+  <text x="164" y="664" fill="#7B669D" font-family="Poppins, Arial, sans-serif" font-size="28">Công nghệ an toàn • Dịu nhẹ • Tiết kiệm thời gian</text>
+</svg>

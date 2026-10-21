@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gói thành viên | BeautyCare</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/layout.css">
+  <link rel="stylesheet" href="../css/components.css">
+</head>
+<body>
+
+<script src="../js/guard.js"></script>
+<header class="topbar">
+  <div class="container topbar-inner">
+    <a class="brand" href="../index.html">
+      <span class="brand-badge"></span>
+      <span>BeautyCare</span>
+    </a>
+
+    <nav class="nav">
+      <a href="services.html" data-nav="services.html">Dịch vụ</a>
+      <a href="booking.html" data-nav="booking.html">Lịch hẹn</a>
+      <a href="history.html" data-nav="history.html">Lịch sử</a>
+      <a href="membership.html" data-nav="membership.html">Thành viên</a>
+      <a href="profile.html" data-nav="profile.html">Hồ sơ</a>
+      <a href="security.html" data-nav="security.html">Bảo mật</a>
+      <span class="badge" id="topbarRole">User</span>
+      <span class="badge" id="topbarMember">Bạc</span>
+      <a href="../login.html" class="js-logout btn">Đăng xuất</a>
+    </nav>
+  </div>
+</header>
+
+<section class="page">
+  <div class="container">
+    <div class="card hero-card">
+      <div class="card-header">
+        <div>
+          <h2>Gói thành viên</h2>
+          <div id="membershipHeroNote" style="margin-top:10px"></div>
+        </div>
+        <div style="min-width:260px">
+          <label class="label" style="margin-bottom:6px">Cổng thanh toán</label>
+          <select class="input" id="provider">
+            <option value="vnpay">VNPay</option>
+            <option value="qr">QR / Chuyển khoản</option>
+            <option value="momo">MoMo</option>
+            <option value="stripe">Stripe</option>
+            <option value="paypal">PayPal</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:16px" id="plans" class="grid grid-2"></div>
+  </div>
+</section>
+
+<div class="modal-backdrop" id="planDetailModal">
+  <div class="modal membership-plan-modal">
+    <div class="modal-head">
+      <div>
+        <h3 id="planDetailName">Chi tiết gói</h3>
+        <div class="small muted" id="planDetailCode">—</div>
+      </div>
+      <button class="icon-btn js-close-modal" type="button" data-modal="planDetailModal">×</button>
+    </div>
+
+    <div class="membership-plan-summary">
+      <div>
+        <div class="small muted">Hạng</div>
+        <div style="margin-top:6px"><span class="badge" id="planDetailTierBadge"><b id="planDetailTier">—</b></span></div>
+      </div>
+      <div>
+        <div class="small muted">Thời hạn</div>
+        <div class="membership-plan-value" id="planDetailDuration">—</div>
+      </div>
+      <div>
+        <div class="small muted">Giá gói</div>
+        <div class="membership-plan-value" id="planDetailPrice">—</div>
+      </div>
+    </div>
+
+    <div class="membership-plan-facts">
+      <div class="membership-plan-fact">
+        <div class="small muted" id="planDetailStatusTitle">Thông tin gói</div>
+        <div class="membership-plan-value" id="planDetailStatusSummary">—</div>
+        <div class="small muted" id="planDetailCompare" style="margin-top:8px">—</div>
+      </div>
+      <div class="membership-plan-fact">
+        <div class="small muted">Gói hiện tại</div>
+        <div class="membership-plan-value" id="planDetailCurrentPlan">—</div>
+        <div class="small muted" style="margin-top:8px">Giá hiện tại: <b id="planDetailCurrentPrice">—</b></div>
+      </div>
+      <div class="membership-plan-fact">
+        <div class="small muted">Chênh lệch giá</div>
+        <div class="membership-plan-value" id="planDetailDiff">—</div>
+        <div class="small muted" id="planDetailResult" style="margin-top:8px">—</div>
+      </div>
+    </div>
+
+    <div class="modal-actions">
+      <button class="btn js-close-modal" type="button" data-modal="planDetailModal">Đóng</button>
+      <button class="btn primary" type="button" id="btnPlanDetailAction">Tiếp tục</button>
+    </div>
+  </div>
+</div>
+
+<script src="../js/config.js"></script>
+<script src="../js/ui.js"></script>
+<script src="../js/api.js"></script>
+<script src="../js/auth.js"></script>
+<script src="../js/membership.js"></script>
+</body>
+</html>

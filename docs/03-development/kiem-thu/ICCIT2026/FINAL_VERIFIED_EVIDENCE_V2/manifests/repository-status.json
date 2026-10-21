@@ -1,0 +1,11 @@
+﻿{
+    "git_metadata":  false,
+    "remote":  null,
+    "branch":  null,
+    "gh_cli":  false,
+    "actionlint":  false,
+    "yamllint":  false,
+    "github_actions_execution":  "NOT VERIFIED",
+    "commit_sha":  null,
+    "reason":  "Workspace has no .git metadata or GitHub CLI"
+}

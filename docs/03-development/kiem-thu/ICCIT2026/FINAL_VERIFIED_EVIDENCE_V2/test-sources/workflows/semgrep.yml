@@ -1,0 +1,43 @@
+name: Semgrep security scan
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+
+permissions:
+  contents: read
+  security-events: write
+
+jobs:
+  semgrep:
+    name: Semgrep OWASP scan
+    runs-on: ubuntu-latest
+    container:
+      image: semgrep/semgrep:latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Scan backend source
+        run: |
+          set +e
+          common_args="--config p/owasp-top-ten --error --exclude .env --exclude '.env.*' --exclude '**/node_modules/**' --exclude '**/logs/**' --exclude '**/raw-results/**' --exclude '**/results/**' --exclude '**/coverage/**' backend"
+          semgrep scan $common_args --json --output semgrep-results.json
+          json_status=$?
+          semgrep scan $common_args --sarif --sarif-output semgrep-results.sarif
+          sarif_status=$?
+          if [ "$json_status" -ne 0 ] || [ "$sarif_status" -ne 0 ]; then
+            exit 1
+          fi
+      - name: Upload Semgrep SARIF
+        if: always()
+        uses: github/codeql-action/upload-sarif@v3
+        with:
+          sarif_file: semgrep-results.sarif
+      - name: Upload raw Semgrep results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: semgrep-results
+          path: |
+            semgrep-results.json
+            semgrep-results.sarif

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Thanh toán QR | BeautyCare</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/layout.css">
+  <link rel="stylesheet" href="../css/components.css">
+</head>
+<body>
+<script src="../js/guard.js"></script>
+<header class="topbar">
+  <div class="container topbar-inner">
+    <a class="brand" href="../index.html">
+      <span class="brand-badge"></span>
+      <span>BeautyCare</span>
+    </a>
+    <nav class="nav">
+      <a href="services.html">Dịch vụ</a>
+      <a href="booking.html">Lịch hẹn</a>
+      <a href="history.html">Lịch sử</a>
+      <a href="membership.html">Thành viên</a>
+      <a href="profile.html">Hồ sơ</a>
+      <span class="badge" id="topbarRole">User</span>
+      <span class="badge" id="topbarMember">Bạc</span>
+      <a href="../login.html" class="js-logout">Đăng xuất</a>
+    </nav>
+  </div>
+</header>
+
+<section class="page">
+  <div class="container">
+    <div class="card" style="max-width:860px;margin:0 auto">
+      <h2>Thanh toán bằng QR</h2>
+      <p class="muted" style="margin-top:6px">Mở ví điện tử / ngân hàng, chọn <b>Quét QR</b> và thanh toán đúng số tiền.</p>
+
+      <div class="grid grid-2" style="margin-top:18px;align-items:start">
+        <div class="card qr-pay-card">
+          <div id="qrBox" class="qr-pay-box" aria-label="Mã QR thanh toán">
+            <div class="qr-pay-loading">
+              <div style="font-weight:700">Đang tạo mã QR...</div>
+            </div>
+          </div>
+          <div class="small muted" style="margin-top:10px">Quét mã QR để mở trang xác nhận thanh toán đã điền sẵn thông tin.</div>
+        </div>
+
+        <div>
+          <div class="card qr-pay-summary">
+            <div class="label">Mã giao dịch</div>
+            <div id="ref" style="font-weight:700;font-size:18px"></div>
+            <div class="label" style="margin-top:12px">Số tiền</div>
+            <div id="amt" style="font-weight:800;font-size:28px"></div>
+            <div class="small" style="margin-top:10px">Nội dung chuyển khoản: <b>BC&nbsp;<span id="ref2"></span></b></div>
+          </div>
+
+          <div style="display:flex;gap:12px;margin-top:14px;flex-wrap:wrap">
+            <a class="btn" href="history.html" style="flex:1">Về lịch sử</a>
+            <a class="btn primary" id="resultBtn" href="#" style="flex:1">Xem trạng thái</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script src="../js/config.js"></script>
+<script src="../js/ui.js"></script>
+<script src="../js/api.js"></script>
+<script src="../js/auth.js"></script>
+<script src="../js/vendor/qrcode-generator.js"></script>
+<script src="../js/qrPayPage.js"></script>
+</body>
+</html>

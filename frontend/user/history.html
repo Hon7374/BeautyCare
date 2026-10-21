@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lịch sử giao dịch | BeautyCare</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/layout.css">
+  <link rel="stylesheet" href="../css/components.css">
+</head>
+<body>
+
+<script src="../js/guard.js"></script>
+<header class="topbar">
+  <div class="container topbar-inner">
+    <a class="brand" href="../index.html">
+      <span class="brand-badge"></span>
+      <span>BeautyCare</span>
+    </a>
+
+    <nav class="nav">
+      <a href="services.html" data-nav="services.html">Dịch vụ</a>
+      <a href="booking.html" data-nav="booking.html">Lịch hẹn</a>
+      <a href="history.html" data-nav="history.html">Lịch sử</a>
+      <a href="membership.html" data-nav="membership.html">Thành viên</a>
+      <a href="profile.html" data-nav="profile.html">Hồ sơ</a>
+      <a href="security.html" data-nav="security.html">Bảo mật</a>
+      <span class="badge" id="topbarRole">User</span>
+      <span class="badge" id="topbarMember">Bạc</span>
+      <a href="../login.html" class="js-logout btn">Đăng xuất</a>
+    </nav>
+  </div>
+</header>
+
+<section class="page">
+  <div class="container">
+    <div class="card hero-card">
+      <div class="card-header">
+        <div>
+          <h2>Lịch sử giao dịch</h2>
+          <p class="muted">Danh sách tối đa 50 giao dịch gần nhất.</p>
+        </div>
+        <div style="min-width:220px">
+          <select class="select" id="filter">
+            <option value="all">Tất cả</option>
+            <option value="7d">7 ngày gần đây</option>
+            <option value="30d">30 ngày gần đây</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:16px">
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Thời gian</th>
+              <th>Giá gốc</th>
+              <th>Giảm</th>
+              <th>Voucher</th>
+              <th>Tổng</th>
+              <th>Trạng thái</th>
+              <th>Thao tác</th>
+            </tr>
+          </thead>
+          <tbody id="txBody"></tbody>
+        </table>
+      </div>
+
+      <div id="emptyState" class="card soft hidden" style="margin-top:14px">
+        <h3>Chưa có giao dịch</h3>
+        <p class="muted">Hãy chọn dịch vụ và thanh toán để tạo lịch sử.</p>
+        <a class="btn primary" href="services.html">Chọn dịch vụ</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="modal-backdrop" id="txDetailModal">
+  <div class="modal invoice-modal">
+    <div class="modal-head no-print">
+      <div>
+        <h3>Chi tiết giao dịch</h3>
+        <div class="small muted">Xem, in hoặc xuất hóa đơn cho giao dịch đã chọn.</div>
+      </div>
+      <button class="icon-btn js-close-modal" type="button" data-modal="txDetailModal">×</button>
+    </div>
+
+    <div id="invoiceDetail" class="invoice-detail"></div>
+
+    <div class="modal-actions no-print">
+      <button class="btn js-close-modal" type="button" data-modal="txDetailModal">Đóng</button>
+      <button class="btn ghost" type="button" id="btnExportInvoice">Xuất hóa đơn</button>
+      <button class="btn primary" type="button" id="btnPrintInvoice">In hóa đơn</button>
+    </div>
+  </div>
+</div>
+
+<script src="../js/config.js"></script>
+<script src="../js/ui.js"></script>
+<script src="../js/api.js"></script>
+<script src="../js/auth.js"></script>
+<script src="../js/historyPage.js"></script>
+</body></html>

@@ -1,0 +1,23 @@
+<svg width="1200" height="720" viewBox="0 0 1200 720" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="80" y1="40" x2="1120" y2="680" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFE9D7"/>
+      <stop offset="1" stop-color="#FFF8F2"/>
+    </linearGradient>
+    <linearGradient id="card" x1="370" y1="190" x2="890" y2="520" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFFFFF" stop-opacity="0.94"/>
+      <stop offset="1" stop-color="#FFF2E8" stop-opacity="0.98"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="720" rx="40" fill="url(#bg)"/>
+  <circle cx="180" cy="170" r="120" fill="#F7C7A4" fill-opacity="0.45"/>
+  <circle cx="1010" cy="560" r="170" fill="#F5B391" fill-opacity="0.25"/>
+  <rect x="300" y="150" width="600" height="420" rx="40" fill="url(#card)"/>
+  <rect x="360" y="240" width="180" height="180" rx="34" fill="#F1C4A9"/>
+  <rect x="570" y="240" width="270" height="26" rx="13" fill="#E88A63"/>
+  <rect x="570" y="290" width="210" height="18" rx="9" fill="#D9A587"/>
+  <rect x="570" y="336" width="180" height="18" rx="9" fill="#E7CBB8"/>
+  <rect x="360" y="448" width="480" height="16" rx="8" fill="#E4B89A"/>
+  <text x="570" y="400" fill="#6B4A39" font-family="Poppins, Arial, sans-serif" font-size="54" font-weight="700">BeautyCare</text>
+  <text x="570" y="455" fill="#8B6A58" font-family="Poppins, Arial, sans-serif" font-size="28">Dịch vụ chăm sóc sắc đẹp an toàn</text>
+</svg>

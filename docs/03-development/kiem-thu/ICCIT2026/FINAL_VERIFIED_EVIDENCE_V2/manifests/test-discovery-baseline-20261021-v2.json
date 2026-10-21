@@ -1,0 +1,32 @@
+{
+  "schema": "beautycare.iccit2026.test-discovery.v2",
+  "generated_at": "2026-10-21",
+  "baseline_unique_tests": 55,
+  "added_meaningful_tests": 15,
+  "final_unique_tests": 70,
+  "counting_policy": "unique test declarations by Jest test file; execution phases are not summed",
+  "added_tests": {
+    "tests/security.no-db.test.js": 2,
+    "tests/security.auth-flow.test.js": 1,
+    "tests/booking-concurrency.integration.test.js": 2,
+    "tests/booking-validation.no-db.test.js": 6,
+    "tests/payment-input-validation.no-db.test.js": 2,
+    "tests/pricing.integrity.no-db.test.js": 2
+  },
+  "execution": {
+    "smoke": { "tests": 51, "passed": 51, "failed": 0, "skipped": 0 },
+    "focused": { "tests": 36, "passed": 36, "failed": 0, "skipped": 0 },
+    "db": { "tests": 9, "passed": 9, "failed": 0, "skipped": 0 },
+    "booking": { "tests": 3, "passed": 3, "failed": 0, "skipped": 0 },
+    "lint": "pass",
+    "syntax_test_files": { "files": 18, "failed": 0 }
+  },
+  "raw_evidence": {
+    "smoke": "completion-20261021-1945/smoke.json",
+    "focused": "completion-20261021-1945/focused.json",
+    "db": "completion-20261021-2005/db.json",
+    "booking": "completion-20261021-1955/booking.json",
+    "full_regression": "completion-20261021-2100/full-regression.log"
+  },
+  "historical_baseline_preserved": "raw-results/security-test-coverage/test-discovery-baseline-20261021.json"
+}

@@ -1,0 +1,76 @@
+{
+  "audit_date": "2026-10-17",
+  "timezone": "Asia/Saigon",
+  "new_load_test_run": true,
+  "new_load_test_run_date": "2026-10-17",
+  "new_load_test_profiles": "100/200/300 VU x 3 repetitions plus 400 VU x 1; 500 VU attempted and aborted after connection refusal",
+  "new_load_test_http_failure_rate": 0,
+  "new_load_test_interrupted_iterations": 0,
+  "new_load_test_artifacts": "results/iccIT-replication/",
+  "four_hundred_vu": {
+    "new_current_run": {
+      "json_artifact": "results/iccIT-replication/k6-load-400vus-run1.json",
+      "vus": 400,
+      "duration_seconds": 300.022722165,
+      "iterations": 302936,
+      "http_200": 302936,
+      "http_failure_rate": 0,
+      "interrupted_iterations": 0,
+      "classification": "completed_local_replication"
+    },
+    "json_artifact": {
+      "valid_json": true,
+      "vus": 400,
+      "duration_seconds": 300.022722165,
+      "requests": 1244906,
+      "iterations": 1244906,
+      "http_200": 91742,
+      "failed_or_other": 1153164,
+      "http_failure_rate": 0.9263060825475979,
+      "request_rate": 4149.372390919623,
+      "successful_200_rate": 305.7835064557063,
+      "classification": "historical_overload_observation"
+    },
+    "reported_interrupted_attempt": {
+      "vus": 400,
+      "duration": "approximately 14 seconds",
+      "iterations_observed": 12486,
+      "connection_refused": true,
+      "classification": "historical_interrupted_observation"
+    },
+    "conflict_status": "UNRESOLVED EVIDENCE CONFLICT"
+  },
+  "five_hundred_vu": {
+    "new_current_attempt": {
+      "vus": 500,
+      "duration_seconds": 6.5,
+      "iterations_observed": 6442,
+      "interrupted_iterations": 31392,
+      "connection_refused": true,
+      "artifact": "results/k6-load-500vus.json",
+      "classification": "aborted_connection_refused_observation"
+    },
+    "historical_artifact": "Partial failure-affected 500-VU record retained in prior evidence"
+  },
+  "reproducibility": {
+    "historical_node": "v24.12.0",
+    "historical_npm": "v11.12.1",
+    "historical_mysql": "Docker MySQL 8.4.11",
+    "historical_k6_version": "NOT RECORDED",
+    "historical_hardware": "NOT RECORDED",
+    "current_k6_available": true,
+    "current_docker_available": true,
+    "replication_status": "100_200_300_REPLICATED_400_COMPLETED_500_ABORTED_ON_CONNECTION_REFUSAL"
+  },
+  "reference_20": {
+    "status": "VERIFIED",
+    "authors": ["Sana Qadir", "Eman Waheed", "Aisha Khanum", "Seema Jehan"],
+    "title": "Comparative evaluation of approaches & tools for effective security testing of Web applications",
+    "journal": "PeerJ Computer Science",
+    "volume": "11",
+    "article_number": "e2821",
+    "year": 2025,
+    "doi": "10.7717/peerj-cs.2821"
+  },
+  "manuscript": "NOT_FOUND_IN_WORKSPACE"
+}

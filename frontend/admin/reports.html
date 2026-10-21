@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin | Reports</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/layout.css">
+  <link rel="stylesheet" href="../css/components.css">
+</head>
+<body>
+<script src="../js/guard.js"></script>
+<div class="app">
+  <aside class="sidebar">
+    <div class="brand" style="cursor:default">
+      <span class="brand-badge"></span>
+      <div>
+        <div style="font-weight:800">BeautyCare Admin</div>
+        <div class="small">Quản trị hệ thống</div>
+      </div>
+    </div>
+
+    <div class="side-footer">
+      <div class="small">Xin chào</div>
+      <div style="font-weight:700" id="topbarUserName">Admin</div>
+      <div style="margin-top:8px;display:flex;gap:8px;flex-wrap:wrap">
+        <span class="badge good" id="topbarRole">Admin</span>
+        <span class="badge good" id="topbarMember">Premium</span>
+      </div>
+    </div>
+
+    <nav class="menu" style="margin-top:14px">
+      <a href="users.html" data-nav="users.html">Users</a>
+      <a href="services.html" data-nav="services.html">Dịch vụ</a>
+      <a href="vouchers.html" data-nav="vouchers.html">Vouchers</a>
+      <a href="bookings.html" data-nav="bookings.html">Lịch hẹn</a>
+      <a href="transactions.html" data-nav="transactions.html">Giao dịch</a>
+      <a href="discounts.html" data-nav="discounts.html">Chính sách giảm</a>
+      <a href="subscriptions.html" data-nav="subscriptions.html">Membership</a>
+      <a href="reports.html" data-nav="reports.html">Báo cáo</a>
+      <a href="../login.html" class="js-logout btn danger" style="justify-content:center;margin-top:10px">Đăng xuất</a>
+    </nav>
+
+  </aside>
+
+  <main class="main">
+    <div class="container">
+
+<div class="card hero-card">
+  <div class="card-header">
+    <div>
+      <h2>Báo cáo</h2>
+      <p class="muted">Tổng quan + doanh thu theo cổng thanh toán.</p>
+    </div>
+    <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">
+      <select class="input" id="reportDays" style="min-width:140px">
+        <option value="7">7 ngày</option>
+        <option value="30" selected>30 ngày</option>
+        <option value="90">90 ngày</option>
+        <option value="365">365 ngày</option>
+      </select>
+      <button class="btn" id="btnReloadReports">Tải lại</button>
+    </div>
+  </div>
+</div>
+
+<div class="grid" style="margin-top:16px;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px" id="overviewCards"></div>
+
+<div class="report-chart-grid">
+  <section class="report-chart-card">
+    <div class="row-between" style="align-items:flex-start;gap:12px">
+      <div>
+        <h3>Doanh thu theo cổng</h3>
+        <p class="muted small">Tổng gross amount theo provider.</p>
+      </div>
+    </div>
+    <div class="chart-box">
+      <canvas id="providerRevenueChart"></canvas>
+      <div class="chart-empty" id="providerRevenueEmpty">Đang tải biểu đồ...</div>
+    </div>
+  </section>
+
+  <section class="report-chart-card">
+    <div class="row-between" style="align-items:flex-start;gap:12px">
+      <div>
+        <h3>Tỷ trọng giao dịch</h3>
+        <p class="muted small">Số giao dịch paid theo cổng thanh toán.</p>
+      </div>
+    </div>
+    <div class="chart-box">
+      <canvas id="providerTxChart"></canvas>
+      <div class="chart-empty" id="providerTxEmpty">Đang tải biểu đồ...</div>
+    </div>
+  </section>
+</div>
+
+<section class="report-chart-card report-chart-card--wide">
+  <div class="row-between" style="align-items:flex-start;gap:12px">
+    <div>
+      <h3>Xu hướng theo thời gian</h3>
+      <p class="muted small">Doanh thu paid và số booking theo khoảng ngày đã chọn.</p>
+    </div>
+  </div>
+  <div class="chart-box chart-box--wide">
+    <canvas id="trendChart"></canvas>
+    <div class="chart-empty" id="trendEmpty">Đang tải biểu đồ...</div>
+  </div>
+</section>
+
+<div class="card" style="margin-top:16px">
+  <div class="card-header">
+    <div>
+      <h3>Doanh thu theo cổng</h3>
+      <p class="muted small">Tính theo payments trạng thái paid.</p>
+    </div>
+  </div>
+  <div class="card-content">
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Provider</th>
+            <th>Purpose</th>
+            <th>Số giao dịch</th>
+            <th>Doanh thu</th>
+          </tr>
+        </thead>
+        <tbody id="revenueBody"></tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+    </div>
+  </main>
+</div>
+
+<script src="../js/config.js"></script>
+<script src="../js/ui.js"></script>
+<script src="../js/api.js"></script>
+<script src="../js/auth.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+<script src="../js/adminReports.js"></script>
+</body>
+</html>

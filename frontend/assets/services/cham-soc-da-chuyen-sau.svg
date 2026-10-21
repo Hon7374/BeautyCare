@@ -1,0 +1,17 @@
+<svg width="1200" height="720" viewBox="0 0 1200 720" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="720" rx="40" fill="#FFF7F1"/>
+  <circle cx="210" cy="150" r="118" fill="#F8C0A4" fill-opacity="0.46"/>
+  <circle cx="1005" cy="540" r="176" fill="#F7D9C0" fill-opacity="0.5"/>
+  <rect x="110" y="118" width="980" height="484" rx="42" fill="#FFFFFF" fill-opacity="0.76"/>
+  <path d="M294 452C294 338 382 246 494 246C606 246 694 338 694 452V482H294V452Z" fill="#F6DACA"/>
+  <circle cx="494" cy="204" r="112" fill="#EFB89C"/>
+  <circle cx="620" cy="170" r="42" fill="#FFE4D1"/>
+  <circle cx="670" cy="228" r="26" fill="#F9B490" fill-opacity="0.8"/>
+  <circle cx="722" cy="204" r="16" fill="#F7CCB1"/>
+  <rect x="770" y="220" width="210" height="28" rx="14" fill="#E27B57"/>
+  <rect x="770" y="272" width="160" height="18" rx="9" fill="#CF9475"/>
+  <rect x="770" y="318" width="196" height="18" rx="9" fill="#EBC2AA"/>
+  <rect x="770" y="374" width="144" height="18" rx="9" fill="#F1DDD0"/>
+  <text x="166" y="620" fill="#5C3E31" font-family="Poppins, Arial, sans-serif" font-size="56" font-weight="700">Chăm sóc da chuyên sâu</text>
+  <text x="166" y="666" fill="#8A6A58" font-family="Poppins, Arial, sans-serif" font-size="28">Phục hồi • Làm sáng • Công nghệ dịu nhẹ</text>
+</svg>

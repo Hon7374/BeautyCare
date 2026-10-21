@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin | Giao dịch</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/layout.css">
+  <link rel="stylesheet" href="../css/components.css">
+</head>
+<body>
+
+<script src="../js/guard.js"></script>
+<div class="app">
+  <aside class="sidebar">
+    <div class="brand" style="cursor:default">
+      <span class="brand-badge"></span>
+      <div>
+        <div style="font-weight:800">BeautyCare Admin</div>
+        <div class="small">Quản trị hệ thống</div>
+      </div>
+    </div>
+
+    <div class="side-footer">
+      <div class="small">Xin chào</div>
+      <div style="font-weight:700" id="topbarUserName">Admin</div>
+      <div style="margin-top:8px;display:flex;gap:8px;flex-wrap:wrap">
+        <span class="badge good" id="topbarRole">Admin</span>
+        <span class="badge good" id="topbarMember">Premium</span>
+      </div>
+    </div>
+
+    <nav class="menu" style="margin-top:14px">
+      <a href="users.html" data-nav="users.html">Users</a>
+      <a href="services.html" data-nav="services.html">Dịch vụ</a>
+      <a href="vouchers.html" data-nav="vouchers.html">Vouchers</a>
+      <a href="bookings.html" data-nav="bookings.html">Lịch hẹn</a>
+      <a href="transactions.html" data-nav="transactions.html">Giao dịch</a>
+      <a href="discounts.html" data-nav="discounts.html">Chính sách giảm</a>
+      <a href="subscriptions.html" data-nav="subscriptions.html">Membership</a>
+      <a href="reports.html" data-nav="reports.html">Báo cáo</a>
+
+      <a href="../login.html" class="js-logout btn danger" style="justify-content:center;margin-top:10px">Đăng xuất</a>
+    </nav>
+  </aside>
+
+  <main class="main">
+    <div class="container">
+      
+<div class="card hero-card">
+  <div class="card-header">
+    <div>
+      <h2>Giao dịch</h2>
+      <p class="muted">Top 100 giao dịch gần nhất (theo thời gian).</p>
+    </div>
+    <div style="min-width:280px">
+      <input class="input" id="searchTransactions" placeholder="Tìm theo email / voucher..." />
+    </div>
+  </div>
+</div>
+
+<div style="margin-top:16px">
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>User</th>
+          <th>Giá gốc</th>
+          <th>Giảm</th>
+          <th>Tổng</th>
+          <th>Voucher / Thời gian</th>
+        </tr>
+      </thead>
+      <tbody id="transactionsBody"></tbody>
+    </table>
+  </div>
+</div>
+
+    </div>
+  </main>
+</div>
+<script src="../js/config.js"></script>
+<script src="../js/ui.js"></script>
+<script src="../js/api.js"></script>
+<script src="../js/auth.js"></script>
+<script src="../js/admin.js"></script>
+</body></html>

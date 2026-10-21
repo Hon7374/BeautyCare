@@ -1,0 +1,17 @@
+<svg width="1200" height="720" viewBox="0 0 1200 720" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="720" rx="40" fill="#F6FFF9"/>
+  <circle cx="220" cy="170" r="130" fill="#A8E0C2" fill-opacity="0.45"/>
+  <circle cx="1000" cy="552" r="180" fill="#D6F3E3" fill-opacity="0.55"/>
+  <rect x="120" y="120" width="960" height="480" rx="42" fill="#FFFFFF" fill-opacity="0.78"/>
+  <circle cx="478" cy="236" r="112" fill="#F0C4A8"/>
+  <path d="M320 462C320 356 399 278 500 278C601 278 680 356 680 462V486H320V462Z" fill="#F4DDCF"/>
+  <circle cx="438" cy="218" r="10" fill="#E27D63"/>
+  <circle cx="508" cy="244" r="12" fill="#E39F7A"/>
+  <circle cx="560" cy="194" r="8" fill="#E27D63" fill-opacity="0.8"/>
+  <rect x="744" y="236" width="208" height="28" rx="14" fill="#3FAF78"/>
+  <rect x="744" y="288" width="154" height="18" rx="9" fill="#7BC19B"/>
+  <rect x="744" y="334" width="184" height="18" rx="9" fill="#B6DEC8"/>
+  <rect x="744" y="386" width="144" height="18" rx="9" fill="#DDF2E7"/>
+  <text x="170" y="620" fill="#345A47" font-family="Poppins, Arial, sans-serif" font-size="58" font-weight="700">Trị mụn chuẩn spa</text>
+  <text x="170" y="666" fill="#61836F" font-family="Poppins, Arial, sans-serif" font-size="28">Kháng khuẩn • Làm dịu • Hạn chế thâm sau mụn</text>
+</svg>

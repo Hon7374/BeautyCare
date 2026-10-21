@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Đặt lịch | BeautyCare</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/layout.css">
+  <link rel="stylesheet" href="../css/components.css">
+</head>
+<body>
+
+<script src="../js/guard.js"></script>
+<header class="topbar">
+  <div class="container topbar-inner">
+    <a class="brand" href="../index.html">
+      <span class="brand-badge"></span>
+      <span>BeautyCare</span>
+    </a>
+
+    <nav class="nav">
+      <a href="services.html" data-nav="services.html">Dịch vụ</a>
+      <a href="booking.html" data-nav="booking.html">Lịch hẹn</a>
+      <a href="history.html" data-nav="history.html">Lịch sử</a>
+      <a href="membership.html" data-nav="membership.html">Thành viên</a>
+      <a href="profile.html" data-nav="profile.html">Hồ sơ</a>
+      <a href="security.html" data-nav="security.html">Bảo mật</a>
+      <span class="badge" id="topbarRole">User</span>
+      <span class="badge" id="topbarMember">Bạc</span>
+      <a href="../login.html" class="js-logout btn">Đăng xuất</a>
+    </nav>
+  </div>
+</header>
+<section class="page">
+  <div class="container">
+    <div class="card hero-card">
+      <div class="card-header">
+        <div>
+          <h2>Đặt lịch</h2>
+          <p class="muted">Chọn dịch vụ, ngày và giờ phù hợp. Admin sẽ xác nhận lịch hẹn trong hệ thống.</p>
+        </div>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end">
+          <a class="btn" href="services.html">+ Chọn dịch vụ khác</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Stack cards vertically for easier viewing -->
+    <div style="display:flex;flex-direction:column;gap:16px;margin-top:16px">
+      <div class="card">
+        <h3>Tạo lịch hẹn</h3>
+        <p class="muted small">Mẹo: Nếu bạn đã bấm “Đặt lịch” từ trang Dịch vụ, hệ thống sẽ tự chọn sẵn dịch vụ.</p>
+
+        <label class="label">Dịch vụ</label>
+        <select class="input" id="bkService"></select>
+
+        <div style="margin-top:12px">
+          <div class="small muted" style="margin-bottom:8px">Ngày còn trống (nhấn để chọn nhanh)</div>
+          <div id="bkCalendar" class="day-chip-row"></div>
+        </div>
+
+        <div class="grid grid-2" style="margin-top:10px">
+          <div>
+            <label class="label">Ngày (dd/mm/yyyy)</label>
+
+            <!-- Hiển thị cho user (luôn dd/mm/yyyy) -->
+            <input class="input" id="bkDateText" type="text" readonly placeholder="dd/mm/yyyy" style="cursor:pointer" />
+
+            <!-- Input thật để mở date picker + gửi ISO (yyyy-mm-dd) -->
+            <input class="input" id="bkDate" type="date" style="position:absolute;left:-9999px;opacity:0" />
+          </div>
+          <div>
+            <label class="label">Giờ</label>
+            <select class="input" id="bkTime"></select>
+              <div class="small" id="bkAvailabilityNote" style="margin-top:8px"></div>
+          </div>
+        </div>
+
+        <label class="label" style="margin-top:10px">Ghi chú (tuỳ chọn)</label>
+        <input class="input" id="bkNote" placeholder="VD: da nhạy cảm, cần tư vấn thêm..." />
+
+        <div style="display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end;margin-top:14px">
+          <button class="btn" id="bkReset">Làm mới</button>
+          <button class="btn primary" id="bkSubmit">Xác nhận đặt lịch</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>Lịch hẹn của tôi</h3>
+        <p class="muted small">Bạn có thể hủy lịch khi trạng thái còn <b>pending</b> hoặc <b>confirmed</b>.</p>
+        <div class="table-wrap booking-table" style="margin-top:12px">
+          <table>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Dịch vụ</th>
+                <th>Thời gian</th>
+                <th>SL</th>
+                <th>Trạng thái</th>
+                <th>Ghi chú</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody id="myBookingsBody"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<script src="../js/config.js"></script>
+<script src="../js/ui.js"></script>
+<script src="../js/api.js"></script>
+<script src="../js/auth.js"></script>
+<script src="../js/booking.js"></script>
+</body></html>

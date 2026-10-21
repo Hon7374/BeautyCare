@@ -1,0 +1,28 @@
+.auth-shell{
+  min-height: 100vh;
+  display:grid;
+  grid-template-columns: minmax(0, 1.02fr) minmax(520px, 0.98fr);
+}
+@media (max-width: 900px){
+  .auth-shell{grid-template-columns: 1fr;}
+  .auth-hero{display:none;}
+}
+.auth-hero{
+  padding:42px 28px 42px 42px;
+  display:flex; flex-direction:column; justify-content:center;
+}
+.auth-hero .hero-card{max-width: 640px}
+.auth-panel{
+  padding:42px 48px 42px 24px;
+  display:flex; align-items:center; justify-content:flex-start;
+}
+.auth-box{
+  width:min(560px, 100%);
+}
+.auth-box h2{margin-bottom:6px}
+.auth-box .small{margin-bottom:18px}
+
+@media (min-width: 1600px){
+  .auth-hero .hero-card{max-width: 700px}
+  .auth-box{width:min(600px, 100%)}
+}

@@ -1,0 +1,15 @@
+{
+  "schema": "beautycare.iccit2026.coverage-gap.v2",
+  "generated_at": "2026-10-21",
+  "note": "Rows overlap by control domain and are not additive.",
+  "rows": [
+    { "domain": "Authentication and session lifecycle", "before": 5, "added": 1, "final": 6, "passed": 6, "gap": "live identity provider and distributed session store", "status": "PASS_LOCAL_BOUNDED" },
+    { "domain": "CSRF and cookie binding", "before": 7, "added": 2, "final": 9, "passed": 9, "gap": "browser matrix and cross-origin deployment", "status": "PASS_LOCAL_BOUNDED" },
+    { "domain": "Booking authorization, validation, and concurrency", "before": 1, "added": 8, "final": 9, "passed": 9, "gap": "multi-node and failover behavior", "status": "PASS_LOCAL_BOUNDED" },
+    { "domain": "Payment input, idempotency, and recovery", "before": 7, "added": 2, "final": 9, "passed": 9, "gap": "live provider delivery and settlement reconciliation", "status": "PASS_LOCAL_BOUNDED" },
+    { "domain": "Pricing integrity", "before": 4, "added": 2, "final": 6, "passed": 6, "gap": "currency matrix and tax policy coverage", "status": "PASS_LOCAL_BOUNDED" },
+    { "domain": "XSS regression and SAST-linked behavior", "before": 4, "added": 0, "final": 4, "passed": 4, "gap": "Semgrep findings and four fixpoint timeouts require manual review", "status": "PARTIAL_SAST" },
+    { "domain": "CI provenance", "before": 0, "added": 0, "final": 0, "passed": 0, "gap": "no remote, hosted run URL, SHA, or GitHub conclusion", "status": "NOT_VERIFIED" }
+  ],
+  "unique_total": { "before": 55, "added": 15, "final": 70, "passed": 70, "failed": 0, "skipped": 0 }
+}

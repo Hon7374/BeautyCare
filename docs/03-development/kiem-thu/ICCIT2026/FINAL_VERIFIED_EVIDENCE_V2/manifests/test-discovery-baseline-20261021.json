@@ -1,0 +1,286 @@
+﻿{
+    "schema_version":  "1.0",
+    "generated_at":  "2026-10-21T11:54:45.0786632Z",
+    "source_revision":  null,
+    "source_revision_status":  "UNAVAILABLE: workspace has no .git metadata",
+    "discovery":  {
+                      "test_files":  16,
+                      "declared_cases":  55,
+                      "baseline_unique_cases":  53,
+                      "added_meaningful_cases":  2,
+                      "final_unique_cases":  55,
+                      "baseline_policy":  "Reconstructed from retained reports and current source inventory; no Git history is available."
+                  },
+    "execution":  {
+                      "smoke":  {
+                                    "suites":  9,
+                                    "tests":  41,
+                                    "passed":  41,
+                                    "failed":  0,
+                                    "skipped":  0,
+                                    "run":  "raw-results/security-test-coverage/rerun-20261021-1830/smoke-jest.json"
+                                },
+                      "database":  {
+                                       "suites":  4,
+                                       "tests":  8,
+                                       "passed":  8,
+                                       "failed":  0,
+                                       "skipped":  0,
+                                       "run":  "raw-results/security-test-coverage/rerun-20261021-1830/db-jest.json"
+                                   },
+                      "focused":  {
+                                      "suites":  2,
+                                      "tests":  5,
+                                      "passed":  5,
+                                      "failed":  0,
+                                      "skipped":  0,
+                                      "run":  "raw-results/security-test-coverage/rerun-20261021-1830/focused-jest.json"
+                                  },
+                      "booking_concurrency":  {
+                                                  "suites":  1,
+                                                  "tests":  1,
+                                                  "passed":  1,
+                                                  "failed":  0,
+                                                  "skipped":  0,
+                                                  "run":  "raw-results/security-test-coverage/rerun-20261021-1830/booking-jest.json"
+                                              },
+                      "full_regression":  {
+                                              "command":  "npm run test:all",
+                                              "status":  "PASS",
+                                              "console":  "raw-results/security-test-coverage/full-regression-20261021-1830/test-all-console.log"
+                                          }
+                  },
+    "files":  [
+                  {
+                      "file":  "admin.users.no-db.test.js",
+                      "category":  [
+                                       "authorization"
+                                   ],
+                      "final":  3,
+                      "baseline":  3,
+                      "added":  0,
+                      "phase":  "smoke",
+                      "passed":  3,
+                      "failed":  0,
+                      "skipped":  0,
+                      "raw":  "raw-results/security-test-coverage/rerun-20261021-1830/smoke-jest.json"
+                  },
+                  {
+                      "file":  "booking-concurrency.integration.test.js",
+                      "category":  [
+                                       "booking/concurrency"
+                                   ],
+                      "final":  1,
+                      "baseline":  1,
+                      "added":  0,
+                      "phase":  "separate",
+                      "passed":  1,
+                      "failed":  0,
+                      "skipped":  0,
+                      "raw":  "raw-results/security-test-coverage/rerun-20261021-1830/booking-jest.json"
+                  },
+                  {
+                      "file":  "booking-mailer.test.js",
+                      "category":  [
+                                       "operational"
+                                   ],
+                      "final":  3,
+                      "baseline":  3,
+                      "added":  0,
+                      "phase":  "smoke",
+                      "passed":  3,
+                      "failed":  0,
+                      "skipped":  0,
+                      "raw":  "raw-results/security-test-coverage/rerun-20261021-1830/smoke-jest.json"
+                  },
+                  {
+                      "file":  "mailer.test.js",
+                      "category":  [
+                                       "operational"
+                                   ],
+                      "final":  2,
+                      "baseline":  2,
+                      "added":  0,
+                      "phase":  "smoke",
+                      "passed":  2,
+                      "failed":  0,
+                      "skipped":  0,
+                      "raw":  "raw-results/security-test-coverage/rerun-20261021-1830/smoke-jest.json"
+                  },
+                  {
+                      "file":  "payment-atomicity.integration.test.js",
+                      "category":  [
+                                       "payment/idempotency/recovery"
+                                   ],
+                      "final":  1,
+                      "baseline":  0,
+                      "added":  1,
+                      "phase":  "db",
+                      "passed":  1,
+                      "failed":  0,
+                      "skipped":  0,
+                      "raw":  "raw-results/security-test-coverage/full-regression-20261021-1830/integration/payment-atomicity.json"
+                  },
+                  {
+                      "file":  "payment-idempotency.no-db.test.js",
+                      "category":  [
+                                       "payment/idempotency/recovery"
+                                   ],
+                      "final":  1,
+                      "baseline":  1,
+                      "added":  0,
+                      "phase":  "focused",
+                      "passed":  1,
+                      "failed":  0,
+                      "skipped":  0,
+                      "raw":  "raw-results/security-test-coverage/rerun-20261021-1830/focused-jest.json"
+                  },
+                  {
+                      "file":  "payment-mock-xss.no-db.test.js",
+                      "category":  [
+                                       "XSS/SAST regression"
+                                   ],
+                      "final":  4,
+                      "baseline":  4,
+                      "added":  0,
+                      "phase":  "smoke",
+                      "passed":  4,
+                      "failed":  0,
+                      "skipped":  0,
+                      "raw":  "raw-results/security-test-coverage/rerun-20261021-1830/smoke-jest.json"
+                  },
+                  {
+                      "file":  "payments.subscription-change.no-db.test.js",
+                      "category":  [
+                                       "payment/idempotency/recovery"
+                                   ],
+                      "final":  3,
+                      "baseline":  3,
+                      "added":  0,
+                      "phase":  "smoke",
+                      "passed":  3,
+                      "failed":  0,
+                      "skipped":  0,
+                      "raw":  "raw-results/security-test-coverage/rerun-20261021-1830/smoke-jest.json"
+                  },
+                  {
+                      "file":  "pricing.integrity.no-db.test.js",
+                      "category":  [
+                                       "pricing integrity"
+                                   ],
+                      "final":  4,
+                      "baseline":  4,
+                      "added":  0,
+                      "phase":  "focused",
+                      "passed":  4,
+                      "failed":  0,
+                      "skipped":  0,
+                      "raw":  "raw-results/security-test-coverage/rerun-20261021-1830/focused-jest.json"
+                  },
+                  {
+                      "file":  "security.auth-flow.test.js",
+                      "category":  [
+                                       "authentication",
+                                       "CSRF/session and transport security"
+                                   ],
+                      "final":  5,
+                      "baseline":  5,
+                      "added":  0,
+                      "phase":  "db",
+                      "passed":  5,
+                      "failed":  0,
+                      "skipped":  0,
+                      "raw":  "raw-results/security-test-coverage/full-regression-20261021-1830/test-all-console.log"
+                  },
+                  {
+                      "file":  "security.no-db.test.js",
+                      "category":  [
+                                       "authentication",
+                                       "authorization",
+                                       "CSRF/session and transport security"
+                                   ],
+                      "final":  20,
+                      "baseline":  20,
+                      "added":  0,
+                      "phase":  "smoke",
+                      "passed":  20,
+                      "failed":  0,
+                      "skipped":  0,
+                      "raw":  "raw-results/security-test-coverage/rerun-20261021-1830/smoke-jest.json"
+                  },
+                  {
+                      "file":  "service-image-upload.test.js",
+                      "category":  [
+                                       "operational"
+                                   ],
+                      "final":  2,
+                      "baseline":  2,
+                      "added":  0,
+                      "phase":  "smoke",
+                      "passed":  2,
+                      "failed":  0,
+                      "skipped":  0,
+                      "raw":  "raw-results/security-test-coverage/rerun-20261021-1830/smoke-jest.json"
+                  },
+                  {
+                      "file":  "smoke.test.js",
+                      "category":  [
+                                       "operational"
+                                   ],
+                      "final":  3,
+                      "baseline":  3,
+                      "added":  0,
+                      "phase":  "smoke",
+                      "passed":  3,
+                      "failed":  0,
+                      "skipped":  0,
+                      "raw":  "raw-results/security-test-coverage/rerun-20261021-1830/smoke-jest.json"
+                  },
+                  {
+                      "file":  "smtp.transport.integration.test.js",
+                      "category":  [
+                                       "operational"
+                                   ],
+                      "final":  1,
+                      "baseline":  1,
+                      "added":  0,
+                      "phase":  "smoke",
+                      "passed":  1,
+                      "failed":  0,
+                      "skipped":  0,
+                      "raw":  "raw-results/security-test-coverage/rerun-20261021-1830/smoke-jest.json"
+                  },
+                  {
+                      "file":  "vnpay-duplicate-callback.integration.test.js",
+                      "category":  [
+                                       "payment/idempotency/recovery"
+                                   ],
+                      "final":  1,
+                      "baseline":  1,
+                      "added":  0,
+                      "phase":  "db",
+                      "passed":  1,
+                      "failed":  0,
+                      "skipped":  0,
+                      "raw":  "raw-results/security-test-coverage/full-regression-20261021-1830/integration/vnpay-duplicate-callback.json"
+                  },
+                  {
+                      "file":  "vnpay-ipn.integration.test.js",
+                      "category":  [
+                                       "payment/idempotency/recovery"
+                                   ],
+                      "final":  1,
+                      "baseline":  0,
+                      "added":  1,
+                      "phase":  "db",
+                      "passed":  1,
+                      "failed":  0,
+                      "skipped":  0,
+                      "raw":  "raw-results/security-test-coverage/full-regression-20261021-1830/integration/vnpay-ipn.json"
+                  }
+              ],
+    "integrity":  {
+                      "secret_policy":  "VNPAY_TEST_SECRET supplied out-of-band; no secret value is stored in this JSON",
+                      "artifact_policy":  "Run-specific paths only; historical fixed-path JSON is not overwritten by current evidence writers."
+                  }
+}

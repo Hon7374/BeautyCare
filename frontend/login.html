@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Đăng nhập | BeautyCare</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/auth.css">
+</head>
+<body>
+
+<div class="auth-shell">
+  <div class="auth-hero">
+    <a class="brand" href="index.html">
+      <span class="brand-badge"></span>
+      <span>BeautyCare</span>
+    </a>
+
+    <div class="hero-card" style="margin-top:18px">
+      <h1>Chào mừng quay lại</h1>
+      <p>Đăng nhập để sử dụng dịch vụ, áp dụng hạng thành viên và voucher khi thanh toán.</p>
+
+      <div class="hero-meta">
+        <span class="badge">10 tài khoản demo: 0911111111 đến 0911111120 / 123456</span>
+        <span class="badge">Admin: khucmai51@gmail.com / 123456</span>
+      </div>
+      <div class="small" style="margin-top:10px;color:var(--muted)">
+        Ví dụ: Nguyễn Minh Anh, Trần Gia Hân, Lê Khánh Linh, Phạm Ngọc Mai, Hoàng Thu Trang,
+        Võ Đức Long, Bùi Nhật Nam, Đặng Hà My, Nguyễn Quỳnh Anh, Trương Bảo Châu.
+      </div>
+    </div>
+  </div>
+
+  <div class="auth-panel">
+    <div class="auth-box">
+      <h2>Đăng nhập</h2>
+      <div class="small">Nhập thông tin để vào hệ thống</div>
+
+      <label class="label">Email hoặc SĐT</label>
+      <input class="input" id="email" type="text" placeholder="vd: minh.anh@beautycare.vn / 0911111111" autocomplete="username" />
+
+      <label class="label">Mật khẩu</label>
+      <input class="input" id="password" type="password" placeholder="vd: 123456" autocomplete="current-password" />
+
+      <div id="otpBox" style="display:none">
+        <label class="label">Mã 2FA (nếu đã bật)</label>
+        <input class="input" id="otp" type="text" inputmode="numeric" placeholder="6 chữ số" />
+        <div class="small" style="margin-top:6px;color:var(--muted)">Nếu server báo cần 2FA, nhập mã từ Google Authenticator/Microsoft Authenticator.</div>
+      </div>
+
+      <div style="display:flex;gap:10px;margin-top:16px;flex-wrap:wrap">
+        <button class="btn primary block" id="btnLogin">Đăng nhập</button>
+        <a class="btn ghost block" href="register.html">Tạo tài khoản</a>
+      </div>
+
+      <div class="small" style="margin-top:16px">
+        <a href="forgot.html" style="text-decoration:underline;color:var(--muted)">Quên mật khẩu?</a>
+        <span style="opacity:.5"> · </span>
+        <a href="index.html" style="text-decoration:underline;color:var(--muted)">← Quay lại trang chủ</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="js/config.js"></script>
+<script src="js/ui.js"></script>
+<script src="js/api.js"></script>
+<script src="js/auth.js"></script>
+</body>
+</html>

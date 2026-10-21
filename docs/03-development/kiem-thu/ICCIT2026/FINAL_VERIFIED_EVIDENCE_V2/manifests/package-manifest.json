@@ -1,0 +1,17 @@
+{
+  "package_name": "BEAUTYCARE_ICCIT2026_FINAL_VERIFIED_EVIDENCE_V2",
+  "generated_at": "2026-10-21",
+  "status": "CHECKSUMS_VERIFIED_BEFORE_ZIP",
+  "file_count_before_checksums": 361,
+  "reports": "reports/01-27",
+  "raw_results": "raw-results/",
+  "test_sources": "test-sources/",
+  "manifests": "manifests/",
+  "ci": "ci/",
+  "test_inventory": { "baseline": 55, "added_meaningful": 15, "final_unique": 70, "passed": 70, "failed": 0, "skipped": 0 },
+  "semgrep": { "current_source_targets": 42, "post_expansion_targets": 41, "rules": 70, "findings": 5, "errors": 0, "fixpoint_timeouts": 4, "status": "PARTIAL" },
+  "hosted_ci": "GITHUB HOSTED CI NOT VERIFIED",
+  "b2_run1": "HISTORICAL / INSUFFICIENT RAW EVIDENCE",
+  "secret_policy": "No .env files, credentials, database dump, JWTs, or personal-data export; k6 setup_data redacted in package copies",
+  "historical_policy": "V1 and fixed-path raw evidence are preserved outside this V2 package and are not overwritten"
+}

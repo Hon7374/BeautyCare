@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin | Dịch vụ</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/layout.css">
+  <link rel="stylesheet" href="../css/components.css">
+</head>
+<body>
+
+<script src="../js/guard.js"></script>
+<div class="app">
+  <aside class="sidebar">
+    <div class="brand" style="cursor:default">
+      <span class="brand-badge"></span>
+      <div class="span-2">
+        <div style="font-weight:800">BeautyCare Admin</div>
+        <div class="small">Quản trị hệ thống</div>
+      </div>
+    </div>
+
+    <div class="side-footer">
+      <div class="small">Xin chào</div>
+      <div style="font-weight:700" id="topbarUserName">Admin</div>
+      <div style="margin-top:8px;display:flex;gap:8px;flex-wrap:wrap">
+        <span class="badge good" id="topbarRole">Admin</span>
+        <span class="badge good" id="topbarMember">Premium</span>
+      </div>
+    </div>
+
+    <nav class="menu" style="margin-top:14px">
+      <a href="users.html" data-nav="users.html">Users</a>
+      <a href="services.html" data-nav="services.html">Dịch vụ</a>
+      <a href="vouchers.html" data-nav="vouchers.html">Vouchers</a>
+      <a href="bookings.html" data-nav="bookings.html">Lịch hẹn</a>
+      <a href="transactions.html" data-nav="transactions.html">Giao dịch</a>
+      <a href="discounts.html" data-nav="discounts.html">Chính sách giảm</a>
+      <a href="subscriptions.html" data-nav="subscriptions.html">Membership</a>
+      <a href="reports.html" data-nav="reports.html">Báo cáo</a>
+
+      <a href="../login.html" class="js-logout btn danger" style="justify-content:center;margin-top:10px">Đăng xuất</a>
+    </nav>
+  </aside>
+
+  <main class="main">
+    <div class="container">
+      
+<div class="card hero-card">
+  <div class="card-header">
+    <div>
+      <h2>Dịch vụ</h2>
+      <p class="muted">Thêm/xóa dịch vụ để hiển thị cho người dùng.</p>
+    </div>
+    <div style="display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end">
+      <input class="input" id="searchServices" placeholder="Tìm dịch vụ..." style="min-width:240px" />
+      <button class="btn primary" id="btnAddService">+ Thêm dịch vụ</button>
+    </div>
+  </div>
+</div>
+
+<div style="margin-top:16px">
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Tên dịch vụ</th>
+          <th>Danh mục</th>
+          <th>Thời lượng</th>
+          <th>Giá</th>
+          <th>Trạng thái</th>
+          <th>Thao tác</th>
+        </tr>
+      </thead>
+      <tbody id="servicesBody"></tbody>
+    </table>
+  </div>
+</div>
+
+<div class="modal-backdrop service-form-backdrop" id="modalService">
+  <div class="modal service-form-modal">
+    <div class="modal-head">
+      <div>
+        <h3 id="serviceModalTitle">Thêm dịch vụ</h3>
+        <div class="small muted">Thông tin nhập ở đây sẽ hiển thị trực tiếp trên trang chi tiết dịch vụ.</div>
+      </div>
+      <button class="icon-btn js-close-modal" type="button" data-modal="modalService">✕</button>
+    </div>
+
+    <input type="hidden" id="svcId" />
+
+    <div class="admin-service-form">
+      <div>
+        <label class="label">Tên dịch vụ *</label>
+        <input class="input" id="svcName" placeholder="VD: Chăm sóc da chuyên sâu" />
+      </div>
+      <div>
+        <label class="label">Danh mục *</label>
+        <input class="input" id="svcCategory" placeholder="VD: Chăm sóc da" />
+      </div>
+      <div>
+        <label class="label">Thời lượng (phút) *</label>
+        <input class="input" id="svcDuration" type="number" min="1" placeholder="VD: 75" />
+      </div>
+      <div>
+        <label class="label">Giá (VND) *</label>
+        <input class="input" id="svcPrice" type="number" min="1" placeholder="VD: 650000" />
+      </div>
+      <div>
+        <label class="label">Trạng thái</label>
+        <select class="input" id="svcStatus">
+          <option value="visible">Hiển thị</option>
+          <option value="hidden">Ẩn</option>
+        </select>
+      </div>
+      <div>
+        <label class="label">Ảnh dịch vụ</label>
+        <input class="input" id="svcImageUrl" placeholder="https://... hoac /assets/services/..." />
+      </div>
+      <div class="span-2 service-image-tools">
+        <div>
+          <label class="label">Tai anh len</label>
+          <input id="svcImageFile" type="file" accept="image/png,image/jpeg,image/webp,image/gif" hidden />
+          <div class="service-image-upload-row">
+            <button class="btn" type="button" id="btnUploadServiceImage">Tai anh len</button>
+            <button class="btn ghost" type="button" id="btnClearServiceImage">Xóa ảnh</button>
+          </div>
+          <div class="small muted" style="margin-top:8px">Ho tro JPG, PNG, WEBP, GIF. Kich thuoc toi da 3MB.</div>
+          <div class="small" id="svcImageUploadStatus" style="margin-top:8px"></div>
+        </div>
+        <div class="service-image-preview-card">
+          <div class="service-image-preview-frame">
+            <img id="svcImagePreview" alt="Service image preview" hidden />
+            <div class="service-image-preview-empty" id="svcImagePreviewEmpty">Chưa có ảnh</div>
+          </div>
+        </div>
+      </div>
+      <div class="span-2">
+        <label class="label">Mô tả ngắn</label>
+        <textarea class="textarea" id="svcShortDescription" rows="2" placeholder="Một câu ngắn hiển thị ở danh sách dịch vụ"></textarea>
+      </div>
+      <div class="span-2">
+        <label class="label">Mô tả chi tiết</label>
+        <textarea class="textarea" id="svcDetailDescription" rows="5" placeholder="Mô tả quy trình, trải nghiệm và điểm nổi bật của dịch vụ"></textarea>
+      </div>
+      <div>
+        <label class="label">Lợi ích nổi bật</label>
+        <textarea class="textarea" id="svcBenefits" rows="5" placeholder="Mỗi dòng 1 lợi ích"></textarea>
+      </div>
+      <div>
+        <label class="label">Chuẩn bị trước khi đến</label>
+        <textarea class="textarea" id="svcPreparationNotes" rows="5" placeholder="Mỗi dòng 1 hướng dẫn"></textarea>
+      </div>
+      <div>
+        <label class="label">Chăm sóc sau dịch vụ</label>
+        <textarea class="textarea" id="svcAftercareNotes" rows="5" placeholder="Mỗi dòng 1 lưu ý"></textarea>
+      </div>
+      <div>
+        <label class="label">Phương thức thanh toán</label>
+        <textarea class="textarea" id="svcPaymentMethods" rows="5" placeholder="VNPay&#10;MoMo&#10;QR&#10;Tiền mặt"></textarea>
+      </div>
+      <div class="span-2">
+        <div class="row-between">
+          <label class="label" style="margin-bottom:0">FAQ</label>
+          <button class="btn ghost" type="button" id="btnAddFaq">+ Thêm FAQ</button>
+        </div>
+        <div class="faq-editor" id="svcFaqs"></div>
+      </div>
+      <div>
+        <label class="label">Ghi chú ưu đãi</label>
+        <textarea class="textarea" id="svcPromotionNote" rows="3" placeholder="VD: Giảm thêm theo hạng hội viên ở bước thanh toán"></textarea>
+      </div>
+      <div>
+        <label class="label">ID dịch vụ liên quan</label>
+        <input class="input" id="svcRelatedIds" placeholder="VD: 1, 3, 7" />
+        <div class="small muted" style="margin-top:6px">Để trống thì hệ thống tự lấy dịch vụ cùng danh mục.</div>
+      </div>
+    </div>
+
+    <div class="modal-actions">
+      <button class="btn js-close-modal" type="button" data-modal="modalService">Hủy</button>
+      <button class="btn primary" type="button" id="btnSaveService">Lưu</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-backdrop service-form-backdrop" id="modalServiceDetail">
+  <div class="modal service-detail-modal">
+    <div class="modal-head">
+      <div>
+        <h3 id="serviceDetailTitle">Chi tiết dịch vụ</h3>
+        <div class="small muted">Thông tin hiển thị theo dữ liệu đang được lưu trong hệ thống.</div>
+      </div>
+      <button class="icon-btn js-close-modal" type="button" data-modal="modalServiceDetail">x</button>
+    </div>
+
+    <input type="hidden" id="serviceDetailId" />
+    <div id="serviceDetailContent" class="admin-service-detail"></div>
+
+    <div class="modal-actions">
+      <button class="btn js-close-modal" type="button" data-modal="modalServiceDetail">Đóng</button>
+      <button class="btn primary" type="button" id="btnEditServiceFromDetail">Sửa dịch vụ</button>
+    </div>
+  </div>
+</div>
+
+    </div>
+  </main>
+</div>
+<script src="../js/config.js"></script>
+<script src="../js/ui.js"></script>
+<script src="../js/api.js"></script>
+<script src="../js/auth.js"></script>
+<script src="../js/admin.js"></script>
+</body></html>

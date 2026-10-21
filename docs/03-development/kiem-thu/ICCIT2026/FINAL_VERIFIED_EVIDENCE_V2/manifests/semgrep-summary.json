@@ -1,0 +1,9 @@
+{
+  "tool": "Semgrep",
+  "version": "1.182.0",
+  "ruleset": "p/owasp-top-ten",
+  "current_source": { "artifact": "raw-results/semgrep/current-source-20261021-1639/after.json", "targets": 42, "rules": 70, "findings": 5, "errors": 0, "skipped_rules": 0, "fixpoint_timeouts": 4 },
+  "post_expansion": { "artifact": "raw-results/semgrep/completion-v2-20261021-2045/after.json", "targets": 41, "rules": 70, "findings": 5, "errors": 0, "skipped_rules": 0, "fixpoint_timeouts": 4 },
+  "status": "PARTIAL_NO_SUPPRESSIONS",
+  "hosted_ci": "NOT_VERIFIED"
+}

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Đặt lại mật khẩu | BeautyCare</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/auth.css">
+</head>
+<body>
+
+<div class="auth-shell">
+  <div class="auth-hero">
+    <a class="brand" href="index.html">
+      <span class="brand-badge"></span>
+      <span>BeautyCare</span>
+    </a>
+
+    <div class="hero-card" style="margin-top:18px">
+      <h1>Đặt lại mật khẩu</h1>
+      <p>Nhập token và mật khẩu mới. Sau khi đổi xong, bạn cần đăng nhập lại.</p>
+    </div>
+  </div>
+
+  <div class="auth-panel">
+    <div class="auth-box">
+      <h2>Đặt lại mật khẩu</h2>
+      <div class="small">Token có thể lấy từ trang “Quên mật khẩu” (demo).</div>
+
+      <label class="label">Token</label>
+      <input class="input" id="token" type="text" placeholder="Dán token vào đây" />
+
+      <label class="label">Mật khẩu mới</label>
+      <input class="input" id="new_password" type="password" placeholder="Ít nhất 8 ký tự, có chữ hoa/thường/số" />
+
+      <div style="display:flex;gap:10px;margin-top:16px;flex-wrap:wrap">
+        <button class="btn primary block" id="btnDoReset">Đổi mật khẩu</button>
+        <a class="btn ghost block" href="forgot.html">Lấy token</a>
+      </div>
+
+      <div class="small" style="margin-top:16px">
+        <a href="login.html" style="text-decoration:underline;color:var(--muted)">← Quay lại đăng nhập</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="js/config.js"></script>
+<script src="js/ui.js"></script>
+<script src="js/api.js"></script>
+<script src="js/recovery.js"></script>
+<script src="js/recovery-bindings.js"></script>
+</body>
+</html>

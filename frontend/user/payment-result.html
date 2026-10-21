@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kết quả thanh toán | BeautyCare</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/layout.css">
+  <link rel="stylesheet" href="../css/components.css">
+</head>
+<body>
+
+<script src="../js/guard.js"></script>
+<header class="topbar">
+  <div class="container topbar-inner">
+    <a class="brand" href="../index.html">
+      <span class="brand-badge"></span>
+      <span>BeautyCare</span>
+    </a>
+
+    <nav class="nav">
+      <a href="services.html" data-nav="services.html">Dịch vụ</a>
+      <a href="booking.html" data-nav="booking.html">Lịch hẹn</a>
+      <a href="history.html" data-nav="history.html">Lịch sử</a>
+      <a href="membership.html" data-nav="membership.html">Thành viên</a>
+      <a href="profile.html" data-nav="profile.html">Hồ sơ</a>
+      <a href="security.html" data-nav="security.html">Bảo mật</a>
+      <span class="badge" id="topbarRole">User</span>
+      <span class="badge" id="topbarMember">Bạc</span>
+      <a href="../login.html" class="js-logout btn">Đăng xuất</a>
+    </nav>
+  </div>
+</header>
+
+<section class="page">
+  <div class="container">
+    <div class="card hero-card">
+      <div class="card-header">
+        <div>
+          <h2>Kết quả thanh toán</h2>
+          <p class="muted">Trang này sẽ tự đồng bộ trạng thái từ backend.</p>
+        </div>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end">
+          <a class="btn ghost" href="services.html">Về dịch vụ</a>
+          <a class="btn" href="history.html">Xem lịch sử</a>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:16px" class="grid grid-2">
+      <div class="card invoice">
+        <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:12px;flex-wrap:wrap">
+          <div>
+            <h3 style="margin:0">Hóa đơn thanh toán</h3>
+            <div class="small muted" style="margin-top:6px">
+              Mã giao dịch: <b id="invRef">—</b>
+              <span class="muted">•</span>
+              Ngày: <b id="invDate">—</b>
+            </div>
+          </div>
+          <div id="invStatus" class="badge">—</div>
+        </div>
+
+        <hr class="sep"/>
+
+        <div class="grid" style="grid-template-columns:1fr 1fr;gap:12px">
+          <div>
+            <div class="muted small">Nội dung</div>
+            <div id="invTitle" style="font-weight:800;margin-top:4px">—</div>
+            <div id="invSub" class="small muted" style="margin-top:6px">—</div>
+          </div>
+          <div>
+            <div class="muted small">Phương thức</div>
+            <div id="invProvider" style="font-weight:800;margin-top:4px">—</div>
+            <div class="small muted" style="margin-top:6px">Trạng thái sẽ tự cập nhật nếu đang xử lý.</div>
+          </div>
+        </div>
+
+        <hr class="sep"/>
+
+        <div>
+          <div class="muted small" style="margin-bottom:8px">Tóm tắt thanh toán</div>
+          <table class="tbl" style="width:100%">
+            <tbody id="invMoney">
+              <tr><td class="muted">Giá gốc</td><td style="text-align:right">—</td></tr>
+              <tr><td class="muted">Giảm</td><td style="text-align:right">—</td></tr>
+              <tr><td class="muted">Voucher</td><td style="text-align:right">—</td></tr>
+              <tr><td><b>Tổng thanh toán</b></td><td style="text-align:right"><b>—</b></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>Thao tác nhanh</h3>
+        <div id="serverStatus" class="small muted" style="margin-top:8px">Đang tải...</div>
+        <hr class="sep"/>
+        <div class="no-print" style="display:flex;gap:10px;flex-wrap:wrap">
+          <button class="btn" id="btnPrint">In hóa đơn</button>
+          <a class="btn" href="history.html">Xem lịch sử</a>
+          <a class="btn ghost" href="booking.html">Về lịch hẹn</a>
+        </div>
+        <div id="payHelp" class="small" style="margin-top:12px;color:#666"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script src="../js/config.js"></script>
+<script src="../js/ui.js"></script>
+<script src="../js/api.js"></script>
+<script src="../js/auth.js"></script>
+<script src="../js/paymentResult.js"></script>
+</body>
+</html>

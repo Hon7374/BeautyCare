@@ -1,0 +1,16 @@
+<svg width="1200" height="720" viewBox="0 0 1200 720" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="720" rx="40" fill="#FFF6F1"/>
+  <circle cx="220" cy="160" r="122" fill="#ECA475" fill-opacity="0.42"/>
+  <circle cx="990" cy="560" r="176" fill="#F6D1BC" fill-opacity="0.46"/>
+  <rect x="118" y="120" width="964" height="480" rx="42" fill="#FFFFFF" fill-opacity="0.75"/>
+  <rect x="210" y="360" width="384" height="88" rx="44" fill="#D98A58"/>
+  <circle cx="652" cy="318" r="70" fill="#8E5E43"/>
+  <circle cx="652" cy="318" r="46" fill="#B3754C"/>
+  <circle cx="652" cy="318" r="22" fill="#E8B083"/>
+  <rect x="758" y="226" width="210" height="28" rx="14" fill="#B96D45"/>
+  <rect x="758" y="278" width="150" height="18" rx="9" fill="#CA926C"/>
+  <rect x="758" y="324" width="182" height="18" rx="9" fill="#E3B896"/>
+  <rect x="758" y="380" width="146" height="18" rx="9" fill="#F2DDD0"/>
+  <text x="164" y="618" fill="#613D2A" font-family="Poppins, Arial, sans-serif" font-size="58" font-weight="700">Massage đá nóng</text>
+  <text x="164" y="664" fill="#8C6957" font-family="Poppins, Arial, sans-serif" font-size="28">Làm ấm cơ thể • Lưu thông khí huyết • Ngủ ngon</text>
+</svg>

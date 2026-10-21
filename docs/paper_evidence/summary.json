@@ -1,0 +1,33 @@
+{
+  "audit_date": "2026-10-17",
+  "timezone": "Asia/Saigon",
+  "new_runtime_verification": false,
+  "repository_git_metadata": "NOT_AVAILABLE_IN_WORKSPACE",
+  "csrf": {
+    "classification": "naive_double_submit_cookie",
+    "signed": false,
+    "session_bound": false,
+    "existing_evidence": "partial_pass_for_missing_and_matching_header"
+  },
+  "load": {
+    "historical_completed_profiles": [100, 200, 300],
+    "historical_completed_profiles_http_error_rate": 0,
+    "400_vus": "FAIL_OVERLOAD_OBSERVATION",
+    "500_vus": "STOPPED_OVERLOAD_OBSERVATION",
+    "new_run": "NOT_RUN"
+  },
+  "discount_policy": {
+    "static_rules_found": ["membership_rate", "voucher_expiry", "combined_cap", "rounding", "non_negative_total", "server_side_recalculation"],
+    "runtime_tests": "NOT_TESTED",
+    "missing_or_not_implemented": ["voucher_usage_limit", "per_customer_limit", "minimum_order_value", "future_activation_date", "atomic_consumption", "idempotent_retry"]
+  },
+  "historical_claims": {
+    "test_suites": "VERIFIED_BY_EXISTING_EVIDENCE",
+    "mysql_5_of_5": "VERIFIED_BY_EXISTING_EVIDENCE",
+    "security_19_of_19": "VERIFIED_BY_EXISTING_EVIDENCE",
+    "vnpay_10_paid_1_failed": "VERIFIED_BY_EXISTING_EVIDENCE",
+    "zap_high_0_medium_4_low_2_info_3": "VERIFIED_BY_EXISTING_EVIDENCE",
+    "csrf_signed_session_bound": "CONTRADICTED",
+    "400_or_500_vus_pass": "CONTRADICTED"
+  }
+}
