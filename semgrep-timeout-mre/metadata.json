@@ -1,0 +1,25 @@
+{
+  "schema": "beautycare-semgrep-timeout-mre-v1",
+  "engine": "Semgrep OSS 1.182.0",
+  "docker_image": "semgrep/semgrep:1.182.0",
+  "docker_digest": "sha256:4a34048c04fef049f71665047f074cffb00cc3d89482f965a5cd151d589237af",
+  "ruleset": "p/owasp-top-ten",
+  "timeout_flags": ["--timeout", "0", "--timeout-threshold", "0"],
+  "minimum_target_group": ["backend/routes/admin.js", "backend/routes/auth.js"],
+  "single_file_controls": {
+    "admin.js": {"findings": 0, "scanner_errors": 0, "fixpoint_timeouts": 0},
+    "auth.js": {"findings": 0, "scanner_errors": 0, "fixpoint_timeouts": 0}
+  },
+  "pair_result": {
+    "findings": 0,
+    "scanner_errors": 0,
+    "fixpoint_timeouts": 2,
+    "timeout_locations": ["backend/routes/admin.js", "backend/routes/auth.js"]
+  },
+  "rule_isolation": {
+    "snapshot": "rules/raw-html-format.yaml",
+    "pair_fixpoint_timeouts": 0
+  },
+  "root_cause_statement": "Verified target-set-dependent taint/fixpoint interaction under the original OWASP ruleset; lower-level internal convergence mechanism remains a hypothesis.",
+  "secrets_included": false
+}

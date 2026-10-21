@@ -38,6 +38,20 @@ describe('Mock payment HTML escaping', () => {
     expect(unsafe.text).toMatch(/href="\/api\/payments\/mock\/complete\?ref=safe-ref[^" ]*front=http%3A%2F%2Flocalhost%3A3000/);
   });
 
+  test('escapes HTML in an allowlisted frontend URL pathname', async () => {
+    const res = await request(makeApp()).get('/api/payments/mock/pay')
+      .query({
+        ref: 'safe-ref',
+        provider: 'mock',
+        front: 'http://localhost:3000/<img src=x onerror=alert(1)>'
+      });
+
+    expect(res.status).toBe(200);
+    expect(res.text).toContain('http://localhost:3000/%3Cimg%20src=x%20onerror=alert(1)%3E');
+    expect(res.text).not.toMatch(/<img\b|<script\b|javascript:/i);
+    expect(res.text).not.toMatch(/<[^>]*\bonerror\s*=/i);
+  });
+
   test('sanitizes provider display and encoded/event-handler payloads', async () => {
     const res = await request(makeApp()).get('/api/payments/mock/pay')
       .query({

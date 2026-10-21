@@ -1,0 +1,3 @@
+docker run --rm -v "<repository>:/src" -w /src/semgrep-timeout-mre/source semgrep/semgrep:1.182.0 semgrep scan --config p/owasp-top-ten --no-git-ignore --timeout 0 --timeout-threshold 0 --error --json --output /src/semgrep-timeout-mre/results/owasp-admin-auth.json backend/routes/admin.js backend/routes/auth.js
+
+Expected condition: the JSON contains zero findings, zero scanner errors, and two entries in time.fixpoint_timeouts.

@@ -2,9 +2,13 @@
 
 Date: 2026-10-21 (Asia/Saigon)
 
+## Current authoritative status — 2026-10-22
+
+The current source state has a local, complete Semgrep result under `raw-results/semgrep-remediation/20261022/final-ci-verification/`: Semgrep 1.182.0, `p/owasp-top-ten`, 42/42 expected JavaScript targets, 70 rules, 0 findings, 0 scanner errors, 0 skipped rules, and 0 fixpoint timeouts. The fail-closed gate is `PASS`, exit 0. The workflow now pins `--jobs 1`, preserving target and ruleset coverage while avoiding the observed parallel taint-analysis instability. Smoke is 68/68, focused sanitizer/payment is 7/7, database security/payment is 9/9, and gate regression is 14/14. GitHub-hosted post-fix CI is `NOT VERIFIED`; no hosted run is claimed.
+
 ## V2 completion status
 
-The final local security inventory is 70/70 unique tests passed (55 preserved baseline plus 15 meaningful additions). Smoke, DB, booking, lint, syntax, and full-regression evidence is retained under `raw-results/security-test-coverage/`. Semgrep remains PARTIAL: current-source 42 targets and post-expansion 41 targets, both with 5 findings, 0 errors, and 4 timeouts. GitHub hosted CI is VERIFIED but FAILED the Semgrep security gate on run `39606730459` for those five findings; SARIF/raw uploads succeeded. B2 run 1 is HISTORICAL / INSUFFICIENT RAW EVIDENCE.
+The pre-remediation local security inventory was 70/70 unique tests passed (55 preserved baseline plus 15 meaningful additions). Its Semgrep and hosted-CI statements are historical; the current remediation status is in the addendum below and reports 29–32. B2 run 1 is HISTORICAL / INSUFFICIENT RAW EVIDENCE.
 
 ## Final status
 
@@ -16,7 +20,7 @@ The final local security inventory is 70/70 unique tests passed (55 preserved ba
 | Payment callback idempotency | PASS LOCALLY / LIMITED PROVIDER CLAIM | Real MySQL callback integration: 3 × 50 concurrent duplicates; one event and one transaction per repetition |
 | Pricing integrity | PASS — utility behavior verified | 4 pricing tests |
 | Isolated full regression | PASS | Final `npm run test:all`: smoke 11/51 and DB suites 9/9; 70 unique inventory |
-| SAST | PARTIAL — scope verified, remediated, timeout/manual review remains | Semgrep 1.182.0; current-source 42 JS targets, 5 findings, 0 scanner errors; historical corrected scope retains timeout evidence |
+| SAST | PASS locally — complete scope and gate verified | Semgrep 1.182.0; 42/42 JS targets, 70 rules, 0 findings, 0 scanner errors, 0 skipped rules, 0 fixpoint timeouts; hosted CI not verified |
 | Dependency audit | PARTIAL | Safe audit fix applied; 36 advisories remain |
 | 100/200/300 VU public-read replication | VERIFIED HISTORICAL/RETAINED | 3 repetitions each on 2026-10-17 |
 | 400 VU public-read run | VERIFIED SEPARATELY | JSON artifact, zero HTTP failures |
@@ -24,9 +28,9 @@ The final local security inventory is 70/70 unique tests passed (55 preserved ba
 
 ## SAST verification details
 
-Semgrep was installed in an isolated temporary Python virtual environment and ran successfully. The preserved baseline discovery list contained 40 entries and three `.env*` paths; this ambiguity is retained rather than hidden. The corrected scan selected 37 JavaScript targets with `p/owasp-top-ten` and 70 rules after explicit exclusion verification. It produced 5 findings, 0 fatal errors, and 3 fixpoint timeouts even with `--timeout 0`, so complete rule coverage is not claimed. The workspace has no Git repository; `git rev-parse HEAD` returned `fatal: not a git repository`, so no commit hash is available.
+Historical corrected-scope record: Semgrep was installed in an isolated temporary Python virtual environment and ran successfully. The preserved baseline discovery list contained 40 entries and three `.env*` paths; this ambiguity is retained rather than hidden. The corrected scan selected 37 JavaScript targets with `p/owasp-top-ten` and 70 rules after explicit exclusion verification. It produced 5 findings, 0 fatal errors, and 3 fixpoint timeouts even with `--timeout 0`, so complete rule coverage was not claimed in that run. The workspace has no Git repository; `git rev-parse HEAD` returned `fatal: not a git repository`, so no commit hash was available for that historical record.
 
-The five pre-remediation warnings all identified the same reflected HTML construction pattern in `backend/routes/payments.js`. The endpoint now escapes displayed values and has four XSS regression cases proving that script, event-handler, encoded and unsafe-URL payloads are not returned as executable markup. The after-scan still reports five locations because the original Semgrep OSS taint configuration does not recognize the local `escapeHtml` sanitizer. This is retained as a transparent residual tool finding/manual-review item, not converted into a false “0 vulnerabilities” result.
+Historical pre-remediation finding review: the five warnings all identified the same reflected HTML construction pattern in `backend/routes/payments.js`. The endpoint now escapes displayed values and has XSS regression coverage proving that script, event-handler, encoded and unsafe-URL payloads are not returned as executable markup. The historical after-scan still reported five locations because the original Semgrep OSS taint configuration did not recognize the local sanitizer. This remains transparent historical evidence, not the current result.
 
 Raw evidence and exact commands are in [07_SAST_SECURITY_SCAN.md](07_SAST_SECURITY_SCAN.md), [11_SEMGREP_FINDINGS_VERIFICATION.md](11_SEMGREP_FINDINGS_VERIFICATION.md), and [12_SEMGREP_SCOPE_VERIFICATION.md](12_SEMGREP_SCOPE_VERIFICATION.md). The VNPay evidence is in [13_VNPAY_DUPLICATE_CALLBACK_INTEGRATION.md](13_VNPAY_DUPLICATE_CALLBACK_INTEGRATION.md).
 
@@ -50,13 +54,21 @@ The subsequently rerun `npm run test:all` passed with smoke 9 suites/41 tests an
 
 A user-driven payment through `https://sandbox.vnpayment.vn/paymentv2/vpcpay.html` was cross-checked in the local `beautycare` database. The sanitized artifact records a `427500 VND` checkout created at `08:12:31Z`, paid at `08:13:42Z`, with the order marked `paid`, payment events `pending` then `paid`, and one matching transaction. Card data, OTP, and provider credentials were excluded. This confirms one Sandbox Return-flow execution only; it does not establish live-provider IPN delivery.
 
-The scope-corrected Semgrep rerun used Semgrep 1.182.0, `p/owasp-top-ten`, 37 selected JavaScript targets, 70 rules, 5 findings, 0 errors, and 3 fixpoint timeouts. No `.env*` path was selected. Raw files: `raw-results/semgrep/rerun-final-20261021-100247/scope-timeout0.json` and `.sarif`. The SAST status remains PARTIAL; no finding was relabeled as a false positive and no clean-scan claim is made.
+Historical scope-corrected Semgrep rerun: Semgrep 1.182.0, `p/owasp-top-ten`, 37 selected JavaScript targets, 70 rules, 5 findings, 0 errors, and 3 fixpoint timeouts. No `.env*` path was selected. Raw files: `raw-results/semgrep/rerun-final-20261021-100247/scope-timeout0.json` and `.sarif`. No finding was relabeled as a false positive and no clean-scan claim was made for that run.
 
-The 37-target/5-timeout post-remediation rerun at `raw-results/semgrep/final-rerun-20261021-144721/` is historical. The authoritative current-source artifact is `raw-results/semgrep/current-source-20261021-1639/`: 42 targets, 70 rules, 5 findings, 0 errors, 0 skipped rules and 4 fixpoint timeouts. The VNPay source fix and regression test also passed; a valid-signature amount mismatch produces no payment side effects. VNPay IPN is implemented and verified locally with signed callbacks, duplicate delivery, race, rollback and retry tests; this does not establish live-provider delivery behavior.
+Historical pre-worker-serialization current-source rerun: the 42-target artifact at `raw-results/semgrep/current-source-20261021-1639/` recorded 5 findings, 0 errors, 0 skipped rules and 4 fixpoint timeouts. The VNPay source fix and regression test also passed; a valid-signature amount mismatch produces no payment side effects. VNPay IPN is implemented and verified locally with signed callbacks, duplicate delivery, race, rollback and retry tests; this does not establish live-provider delivery behavior.
 
 ## Final evidence matrix
 
+## Current authoritative scope and SAST status
+
+The current worker-serialized scan and gate are the authoritative final local result. JSON/SARIF, the exact target list, invocation metadata, and gate summary agree on 42/42 targets, 0 findings, 0 scanner errors, 0 skipped rules and 0 fixpoint timeouts. Gate regression is 14/14, smoke is 68/68, focused sanitizer/payment is 7/7, and DB security/payment is 9/9. Hosted post-fix CI remains `NOT VERIFIED` pending an approved push.
+
 The current-source Semgrep rerun performed after the IPN and same-connection transaction changes is the authoritative SAST artifact for this final package: Semgrep 1.182.0, `p/owasp-top-ten`, 42 JavaScript targets, 70 rules, 5 findings, 0 scanner errors, 0 skipped rules and 4 fixpoint timeouts. JSON and SARIF are in `raw-results/semgrep/current-source-20261021-1639/`. Prior timeout-bearing Semgrep artifacts remain historical and are not overwritten. SAST remains PARTIAL because the five findings and four timeouts require code review/manual sanitizer modeling; no clean-scan or zero-vulnerability claim is made.
+
+## Historical pre-worker-serialization remediation snapshot
+
+The preceding timeout-bearing records are retained as historical evidence: the same 42-target source scan had 0 findings and 0 scanner errors but 4 fixpoint timeouts, so the custom gate returned `INCOMPLETE_ANALYSIS`. Smoke was 62/62 in that run. They are not the current source-state result and are not overwritten.
 
 | Work item | Before | Implemented | Tested | Result | Evidence |
 |---|---|---|---|---|---|
@@ -66,4 +78,4 @@ The current-source Semgrep rerun performed after the IPN and same-connection tra
 | Payment atomicity | Rollback was previously unverified | Same-connection transaction over finalization writes | Fault injection before/after writes and retry | PASS locally; no partial paid state observed | `18_PAYMENT_ATOMICITY_AND_RECOVERY.md`, `raw-results/payment-atomicity/20261021-1115/` |
 | Failure recovery | No retry evidence | Retry after transient finalization failure | Injected failure followed by valid retry | PASS locally; one paid event/transaction | `18_PAYMENT_ATOMICITY_AND_RECOVERY.md` |
 | Security test coverage | Earlier suites only | IPN, atomicity, auth-flow, validation, authorization and pricing regression coverage | 11 smoke suites/51 tests; 4 DB suites/9 tests; 70 unique maintained cases | PASS locally | `24_SECURITY_COVERAGE_COMPLETION.md`, `raw-results/security-test-coverage/completion-20261021-2100/` |
-| Semgrep CI/CD | Local scan only | `.github/workflows/semgrep.yml` with JSON/SARIF and exclusions | Hosted run 39606730459; scan failed on five findings; uploads succeeded | VERIFIED / FAILED SECURITY GATE | `20_SEMGREP_CI_INTEGRATION.md`, `22_GITHUB_ACTIONS_EXECUTION_VERIFICATION.md` |
+| Semgrep CI/CD | Local scan only | `.github/workflows/semgrep.yml` with JSON/SARIF and exclusions | Historical hosted run 39607269350 failed on five findings; remediation hosted rerun pending push | BASELINE VERIFIED / CURRENT PENDING | `20_SEMGREP_CI_INTEGRATION.md`, `31_GITHUB_SECURITY_GATE_REVALIDATION.md` |

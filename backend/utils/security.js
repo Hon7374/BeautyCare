@@ -17,6 +17,18 @@ function sha256(input) {
   return crypto.createHash('sha256').update(String(input)).digest('hex');
 }
 
+// Escape untrusted values before interpolating them into HTML text or
+// attribute contexts. URL components must be encoded before calling this
+// helper when the value is used in an href/src attribute.
+function sanitizeHtml(value) {
+  return String(value)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
 function csrfSecret() {
   const secret = String(process.env.CSRF_SECRET || process.env.JWT_SECRET || '').trim();
   if (!secret || secret.length < 32) {
@@ -149,6 +161,7 @@ module.exports = {
   durationToMs,
   randomToken,
   sha256,
+  sanitizeHtml,
   createCsrfToken,
   verifyCsrfToken,
   csrfSecret,

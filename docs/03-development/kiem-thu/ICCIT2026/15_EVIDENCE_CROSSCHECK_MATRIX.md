@@ -1,10 +1,14 @@
 # ICCIT 2026 Evidence Cross-Check Matrix
 
+## Current authoritative cross-check — 2026-10-22
+
+The current local evidence set uses Semgrep 1.182.0, `p/owasp-top-ten`, 42/42 runtime-generated JavaScript targets, and 70 executed rules. The final pre-push JSON/SARIF result under `raw-results/semgrep-remediation/20261022/final-ci-verification/` contains 0 findings, 0 scanner errors, 0 skipped rules, and 0 fixpoint timeouts; the fail-closed gate is `PASS`, exit 0. Smoke is 68/68, focused sanitizer/payment is 7/7, database security/payment is 9/9, and gate regression is 14/14. The workflow configuration preserves the same scope and ruleset with `--jobs 1`. GitHub-hosted post-fix execution remains `NOT VERIFIED`.
+
 **Verification date:** 2026-10-21  
 
 ## V2 crosscheck
 
-The synchronized evidence set uses 55 -> 70 unique security tests, with 70/70 passing across separately recorded phases. The authoritative completion paths are under `raw-results/security-test-coverage/`. Semgrep hosted execution remains unverified; local post-expansion Semgrep is 41/70/5/0/4. B2 run 1 is absent and must not be cited as a verified repetition.
+Historical baseline inventory: the synchronized evidence set used 55 -> 70 unique security tests. Historical Semgrep values below are retained for provenance; the current canonical values are in the cross-check above and in report 38. B2 run 1 is absent and must not be cited as a verified repetition.
 **Repository state:** no Git repository metadata was available in the workspace; no commit hash is claimed.
 
 | Claim or metric | Primary evidence | Cross-check | Evidence status |
@@ -20,7 +24,8 @@ The synchronized evidence set uses 55 -> 70 unique security tests, with 70/70 pa
 | User-driven VNPay Sandbox browser payment | `raw-results/vnpay-sandbox/vnpay-browser-run-20261021.json` | 427500 VND; local payment/order `paid`; paid callback at 2026-10-21T08:13:42Z; one matching transaction | VERIFIED for one Sandbox Return execution |
 | Smoke regression suite | `npm run test:all` output and synchronized reports | 9 suites, 41 tests | PASS |
 | Database regression suite | `npm run test:all` output and synchronized reports | 4 suites, 8 tests | PASS |
-| Final Semgrep scan | `raw-results/semgrep/current-source-20261021-1639/after.json` and `after.sarif` | Semgrep 1.182.0; 42 targets; 70 rules; 5 findings; 0 scanner errors; 0 skipped rules; 4 fixpoint timeouts; no `.env*` targets | PARTIAL: findings/timeouts require review; no zero-vulnerability claim |
+| Historical pre-remediation Semgrep scan | `raw-results/semgrep/current-source-20261021-1639/after.json` and `after.sarif` | Semgrep 1.182.0; 42 targets; 70 rules; 5 findings; 0 scanner errors; 0 skipped rules; 4 fixpoint timeouts | HISTORICAL |
+| Current worker-serialized Semgrep scan | `raw-results/semgrep-remediation/20261022/analysis/semgrep/after-worker-serialization/semgrep.json` and `.sarif` | Semgrep 1.182.0; 42/42 targets; 70 rules; 0 findings; 0 scanner errors; 0 skipped rules; 0 fixpoint timeouts; gate PASS | VERIFIED locally; hosted CI not verified |
 | Historical Semgrep baseline | `raw-results/semgrep/before.json` and `before.sarif` | Preserved as historical evidence; prior scope included `.env*` paths and is not the authoritative final scope | HISTORICAL |
 | 100/200/300 VU performance runs | `results/iccIT-replication/aggregate-summary.json` and run artifacts | Historical performance evidence retained with its original manifest/provenance | VERIFIED as historical artifact |
 | 400 VU artifact | `results/iccIT-replication/k6-load-400vus-run1.json` | Retained as a separate artifact; interpretation follows its recorded status | LIMITED / HISTORICAL |
@@ -29,6 +34,10 @@ The synchronized evidence set uses 55 -> 70 unique security tests, with 70/70 pa
 | Reproducibility commit hash | Workspace Git inspection | No Git repository metadata/commit hash available | UNAVAILABLE; not fabricated |
 
 ## Interpretation rules
+
+## Current evidence details
+
+The current raw pair, expected scope, invocation metadata and gate summary under `raw-results/semgrep-remediation/20261022/analysis/semgrep/after-worker-serialization/` agree on 42/42 targets, 0 findings, 0 scanner errors, 0 skipped rules and 0 fixpoint timeouts. Gate tests are 14/14 and smoke is 68/68. Worker-count diagnostics and the MRE remain in `analysis/worker-count/`, `semgrep-timeout-mre/`, and report 38.
 
 Values from smoke, database, focused integration, Semgrep, and performance suites are separate evidence units and must not be summed. The 150 concurrent callback requests are three repetitions of the same Return-flow experiment, not 150 independent payment transactions. A Semgrep warning is a tool finding, not automatically a confirmed vulnerability; each finding requires code review and, where applicable, exploit validation.
 
@@ -46,4 +55,8 @@ The sanitized package index and checksums are located under:
 | Latest unique Jest discovery | `backend/tests/*.test.js` and run JSON | 16 test files, 55 declared cases; 53 retained baseline plus 2 meaningful IPN/atomicity cases | VERIFIED locally; category table in report 19 |
 | Run-specific evidence writer | Integration test sources with `ICCIT_ARTIFACT_DIR` and out-of-band `VNPAY_TEST_SECRET` | New runs write into explicit directories and do not overwrite historical raw paths; no secret value is stored | VERIFIED by `raw-results/security-test-coverage/full-regression-20261021-1830/` and `raw-results/payment-atomicity/20261021-1115/` |
 | Final provenance audit | Historical ZIP comparison, missing-artifact and secret audit | Old ZIPs are duplicate historical copies; no separately bundled raw-results archive or B2 run1 is claimed; final sources contain no literal VNPay secret | `23_FINAL_EVIDENCE_PROVENANCE_AUDIT.md` | VERIFIED |
+
+## Historical pre-worker-serialization cross-check
+
+The earlier remediation row remains historical evidence: the same 42 targets had 0 findings, 0 errors and 4 `time.fixpoint_timeouts`, with a fail-closed `INCOMPLETE_ANALYSIS` gate. Supporting source, test, and timeout evidence is retained in reports 29–37.
 | Final evidence package | Independent final folder and reopened ZIP | Reports, raw results, test sources, manifests, index, consistency report and checksums | `FINAL_VERIFIED_EVIDENCE/` and `BEAUTYCARE_ICCIT2026_FINAL_VERIFIED_EVIDENCE.zip` | VERIFIED after build |

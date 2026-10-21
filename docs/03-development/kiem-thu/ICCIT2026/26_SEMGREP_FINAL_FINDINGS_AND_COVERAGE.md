@@ -6,7 +6,7 @@ The preserved current-source scan (`raw-results/semgrep/current-source-20261021-
 
 ## Findings
 
-All five findings are the same `javascript.express.security.injection.raw-html-format.raw-html-format` warning in `backend/routes/payments.js`, at the manually generated payment HTML response. The relevant values are passed through the project `escapeHtml` helper before interpolation (`safeProvider`, `safeRef`, `okUrl`, `failUrl`, and `front`). Four XSS regression tests pass for script, event-handler, encoded, and unsafe-URL payloads. Manual review therefore treats these as residual tool findings requiring sanitizer modeling review, not as permission to suppress the rule and not as proof of a clean scan.
+All five baseline findings were the same `javascript.express.security.injection.raw-html-format.raw-html-format` warning in `backend/routes/payments.js`. The remediation is documented in report 29: the project now exposes a shared `sanitizeHtml` helper, applies it in the HTML text and URL attribute contexts, and covers it with regression tests. No rule was suppressed.
 
 No finding was suppressed, relabeled, or removed from the raw JSON/SARIF artifacts.
 
@@ -29,4 +29,8 @@ The scan uses the OWASP Top Ten ruleset and JavaScript backend scope. It exclude
 
 ## Conclusion
 
-The defensible result is: 5 residual Semgrep warnings, 0 scanner errors, and 4 fixpoint timeouts. The evidence supports manual-review and regression-test claims; it does not support a zero-vulnerability claim.
+The defensible historical result is: 5 residual Semgrep warnings, 0 scanner errors, and 4 fixpoint timeouts. The current post-remediation result is recorded separately in reports 29–34: 0 findings and 0 scanner errors, but 4 fixpoint timeouts over the same 42-file source scope. Hosted CI remains pending the prepared push.
+
+## Remediation addendum — 2026-10-22
+
+The before/after experiment, source diff, pinned workflow, and raw JSON/SARIF evidence are in report 32 and `raw-results/semgrep-remediation/20261022/`. Historical raw evidence remains unchanged.

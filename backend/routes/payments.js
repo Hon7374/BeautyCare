@@ -5,6 +5,7 @@ const db = require('../db');
 const { verify } = require('../middleware/auth');
 const { calculateServiceTotal } = require('../utils/pricing');
 const { audit } = require('../utils/audit');
+const { sanitizeHtml } = require('../utils/security');
 const { publicAppUrl, paymentMode } = require('../utils/runtime');
 
 const vnpay = require('../utils/providers/vnpay');
@@ -74,15 +75,6 @@ function normalizeFrontendBase(raw, fallback) {
   } catch (_) {
     return fb;
   }
-}
-
-function escapeHtml(value) {
-  return String(value)
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;')
-    .replace(/'/g, '&#39;');
 }
 
 function ipFromReq(req) {
@@ -1462,12 +1454,12 @@ router.get('/mock/pay', async (req, res) => {
   if (!ref) return res.status(400).send('Missing ref');
 
   const frontUrl = normalizeFrontendBase(req.query.front, defaultFrontendBaseUrl());
-  const front = escapeHtml(frontUrl);
+  const front = sanitizeHtml(frontUrl);
   const provider = String(req.query.provider || 'mock').toLowerCase().replace(/[^a-z0-9_-]/g, '') || 'mock';
-  const safeProvider = escapeHtml(provider.toUpperCase());
-  const safeRef = escapeHtml(ref);
-  const okUrl = `/api/payments/mock/complete?ref=${encodeURIComponent(ref)}&provider=${encodeURIComponent(provider)}&status=paid&front=${encodeURIComponent(frontUrl)}`;
-  const failUrl = `/api/payments/mock/complete?ref=${encodeURIComponent(ref)}&provider=${encodeURIComponent(provider)}&status=failed&front=${encodeURIComponent(frontUrl)}`;
+  const safeProvider = sanitizeHtml(provider.toUpperCase());
+  const safeRef = sanitizeHtml(ref);
+  const okUrl = sanitizeHtml(`/api/payments/mock/complete?ref=${encodeURIComponent(ref)}&provider=${encodeURIComponent(provider)}&status=paid&front=${encodeURIComponent(frontUrl)}`);
+  const failUrl = sanitizeHtml(`/api/payments/mock/complete?ref=${encodeURIComponent(ref)}&provider=${encodeURIComponent(provider)}&status=failed&front=${encodeURIComponent(frontUrl)}`);
   res.setHeader('Content-Type', 'text/html; charset=utf-8');
   res.end(
     `<!doctype html><html><head><meta charset="utf-8"/>

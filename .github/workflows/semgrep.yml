@@ -14,18 +14,51 @@ jobs:
     name: Semgrep OWASP scan
     runs-on: ubuntu-latest
     container:
-      image: semgrep/semgrep:latest
+      image: semgrep/semgrep:1.182.0
     steps:
       - uses: actions/checkout@v4
       - name: Scan backend source
+        shell: bash
         run: |
           set +e
-          common_args="--config p/owasp-top-ten --error --exclude .env --exclude '.env.*' --exclude '**/node_modules/**' --exclude '**/logs/**' --exclude '**/raw-results/**' --exclude '**/results/**' --exclude '**/coverage/**' backend"
-          semgrep scan $common_args --json --output semgrep-results.json
+          ruleset="p/owasp-top-ten"
+          worker_count=1
+          scope_file="semgrep-expected-targets.txt"
+          configuration_file="semgrep-invocation.json"
+          mapfile -t target_files < <(find backend -type f -name '*.js' \
+            ! -path 'backend/tests/*' \
+            ! -path 'backend/node_modules/*' \
+            ! -path 'backend/docs/*' \
+            ! -path 'backend/logs/*' \
+            ! -path 'backend/outbox/*' \
+            ! -path 'backend/results/*' \
+            ! -path 'backend/coverage/*' \
+            ! -path 'backend/.runtime-test-mysql/*' | sort)
+          if [ "${#target_files[@]}" -eq 0 ]; then
+            echo "Expected Semgrep scope is empty; refusing to run an unscoped scan."
+            exit 1
+          fi
+          printf '%s\n' "${target_files[@]}" > "$scope_file"
+          printf '{"ruleset":"%s","scope_file":"%s","scope_root":"backend","source_extension":".js","worker_count":%s,"excluded_directories":["backend/tests","backend/node_modules","backend/docs","backend/logs","backend/outbox","backend/results","backend/coverage","backend/.runtime-test-mysql"]}\n' "$ruleset" "$scope_file" "$worker_count" > "$configuration_file"
+          semgrep scan --config "$ruleset" --no-git-ignore --jobs "$worker_count" --timeout 0 --timeout-threshold 0 --error "${target_files[@]}" --json --output semgrep-results.json
           json_status=$?
-          semgrep scan $common_args --sarif --sarif-output semgrep-results.sarif
+          semgrep scan --config "$ruleset" --no-git-ignore --jobs "$worker_count" --timeout 0 --timeout-threshold 0 --error "${target_files[@]}" --sarif --sarif-output semgrep-results.sarif
           sarif_status=$?
-          if [ "$json_status" -ne 0 ] || [ "$sarif_status" -ne 0 ]; then
+          if command -v python3 >/dev/null 2>&1; then
+            python3 backend/scripts/check-semgrep-result.py semgrep-results.json \
+              --expected-scope-file "$scope_file" \
+              --configuration-file "$configuration_file" \
+              --expected-ruleset "$ruleset" \
+              --summary-output semgrep-gate-summary.json
+          else
+            python backend/scripts/check-semgrep-result.py semgrep-results.json \
+              --expected-scope-file "$scope_file" \
+              --configuration-file "$configuration_file" \
+              --expected-ruleset "$ruleset" \
+              --summary-output semgrep-gate-summary.json
+          fi
+          gate_status=$?
+          if [ "$json_status" -ne 0 ] || [ "$sarif_status" -ne 0 ] || [ "$gate_status" -ne 0 ]; then
             exit 1
           fi
       - name: Upload Semgrep SARIF
@@ -38,6 +71,10 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: semgrep-results
+          retention-days: 14
           path: |
             semgrep-results.json
             semgrep-results.sarif
+            semgrep-gate-summary.json
+            semgrep-expected-targets.txt
+            semgrep-invocation.json
