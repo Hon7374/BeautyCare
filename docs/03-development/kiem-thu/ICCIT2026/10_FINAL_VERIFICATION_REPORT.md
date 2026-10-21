@@ -4,7 +4,7 @@ Date: 2026-10-21 (Asia/Saigon)
 
 ## V2 completion status
 
-The final local security inventory is 70/70 unique tests passed (55 preserved baseline plus 15 meaningful additions). Smoke, DB, booking, lint, syntax, and full-regression evidence is retained under `raw-results/security-test-coverage/`. Semgrep remains PARTIAL: current-source 42 targets and post-expansion 41 targets, both with 5 findings, 0 errors, and 4 timeouts. GitHub hosted CI is NOT VERIFIED. B2 run 1 is HISTORICAL / INSUFFICIENT RAW EVIDENCE.
+The final local security inventory is 70/70 unique tests passed (55 preserved baseline plus 15 meaningful additions). Smoke, DB, booking, lint, syntax, and full-regression evidence is retained under `raw-results/security-test-coverage/`. Semgrep remains PARTIAL: current-source 42 targets and post-expansion 41 targets, both with 5 findings, 0 errors, and 4 timeouts. GitHub hosted CI is VERIFIED but FAILED the Semgrep security gate on run `39606730459` for those five findings; SARIF/raw uploads succeeded. B2 run 1 is HISTORICAL / INSUFFICIENT RAW EVIDENCE.
 
 ## Final status
 
@@ -66,4 +66,4 @@ The current-source Semgrep rerun performed after the IPN and same-connection tra
 | Payment atomicity | Rollback was previously unverified | Same-connection transaction over finalization writes | Fault injection before/after writes and retry | PASS locally; no partial paid state observed | `18_PAYMENT_ATOMICITY_AND_RECOVERY.md`, `raw-results/payment-atomicity/20261021-1115/` |
 | Failure recovery | No retry evidence | Retry after transient finalization failure | Injected failure followed by valid retry | PASS locally; one paid event/transaction | `18_PAYMENT_ATOMICITY_AND_RECOVERY.md` |
 | Security test coverage | Earlier suites only | IPN, atomicity, auth-flow, validation, authorization and pricing regression coverage | 11 smoke suites/51 tests; 4 DB suites/9 tests; 70 unique maintained cases | PASS locally | `24_SECURITY_COVERAGE_COMPLETION.md`, `raw-results/security-test-coverage/completion-20261021-2100/` |
-| Semgrep CI/CD | Local scan only | `.github/workflows/semgrep.yml` with JSON/SARIF and exclusions | Workflow syntax/content reviewed; GitHub run unavailable | CONFIGURED / CI NOT VERIFIED | `20_SEMGREP_CI_INTEGRATION.md` |
+| Semgrep CI/CD | Local scan only | `.github/workflows/semgrep.yml` with JSON/SARIF and exclusions | Hosted run 39606730459; scan failed on five findings; uploads succeeded | VERIFIED / FAILED SECURITY GATE | `20_SEMGREP_CI_INTEGRATION.md`, `22_GITHUB_ACTIONS_EXECUTION_VERIFICATION.md` |

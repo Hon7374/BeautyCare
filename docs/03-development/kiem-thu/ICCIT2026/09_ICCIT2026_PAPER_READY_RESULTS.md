@@ -42,7 +42,7 @@ The evidence supports the effectiveness of the tested local controls against the
 
 ## 10. Threats to validity
 
-The experiments use one local host and one MySQL test instance. They do not model network partitions, multiple application nodes, provider-side retries, live credentials, production observability, disaster recovery, or long-term workload behavior. Semgrep timeouts leave analysis blind spots, and the hosted GitHub Actions workflow could not be executed or verified. Missing B2 run 1 limits replication claims.
+The experiments use one local host and one MySQL test instance. They do not model network partitions, multiple application nodes, provider-side retries, live credentials, production observability, disaster recovery, or long-term workload behavior. Semgrep timeouts leave analysis blind spots. GitHub Actions was executed on commit `46d7525`, but its security gate failed on five findings; this verifies CI execution, not a clean scan. Missing B2 run 1 limits replication claims.
 
 ## 11. Conclusion
 

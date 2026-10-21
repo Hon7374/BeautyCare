@@ -2,9 +2,9 @@
 
 ## Status
 
-**GITHUB HOSTED CI NOT VERIFIED**
+**GITHUB HOSTED CI VERIFIED — SECURITY GATE FAILED**
 
-The workspace has no `.git` directory, no configured remote, no commit hash, and no authenticated `gh` CLI. No hosted workflow run URL, run ID, commit SHA, or GitHub conclusion is available. This report therefore does not label the workflow as passed.
+Run `39606730459` executed on commit `46d7525adeecb88456e8ebc307de96fe3bac0a07` at [GitHub Actions](https://github.com/Hon7374/BeautyCare/actions/runs/39606730459). The job completed with `failure` at the Semgrep scan step because the configured `--error` gate detected five findings. SARIF and raw-result upload steps completed successfully. This is a verified hosted execution, not a passing CI result.
 
 ## Local workflow audit
 
@@ -14,8 +14,8 @@ The workflow is structurally reviewable, but local actionlint/yamllint and hoste
 
 ## Local corroboration
 
-The current-source Semgrep pair remains at `raw-results/semgrep/current-source-20261021-1639/` with 42 JavaScript targets, 70 rules, 5 findings, 0 scanner errors, and 4 fixpoint timeouts. A post-test-expansion scope-corrected pair at `raw-results/semgrep/completion-v2-20261021-2045/` scanned 41 JavaScript targets with the same 70 rules, 5 findings, 0 errors, and 4 timeouts. Neither is a hosted CI result.
+The current-source Semgrep pair remains at `raw-results/semgrep/current-source-20261021-1639/` with 42 JavaScript targets, 70 rules, 5 findings, 0 scanner errors, and 4 fixpoint timeouts. A post-test-expansion scope-corrected pair at `raw-results/semgrep/completion-v2-20261021-2045/` scanned 41 JavaScript targets with the same 70 rules, 5 findings, 0 errors, and 4 timeouts. The hosted run corroborates the security-gate failure but does not make the scan clean.
 
 ## Verification boundary
 
-Local configuration inspection verifies that a security gate is configured to fail on Semgrep errors/findings. It does not verify GitHub token permissions, action execution, SARIF ingestion, artifact retention, branch protection, or the result on a particular commit.
+The hosted run verifies action execution, SARIF upload, artifact upload, and the result on commit `46d7525`. It does not verify branch protection, live-provider behavior, or complete static-analysis coverage.

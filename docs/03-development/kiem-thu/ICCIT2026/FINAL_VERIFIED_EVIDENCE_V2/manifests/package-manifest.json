@@ -10,7 +10,7 @@
   "ci": "ci/",
   "test_inventory": { "baseline": 55, "added_meaningful": 15, "final_unique": 70, "passed": 70, "failed": 0, "skipped": 0 },
   "semgrep": { "current_source_targets": 42, "post_expansion_targets": 41, "rules": 70, "findings": 5, "errors": 0, "fixpoint_timeouts": 4, "status": "PARTIAL" },
-  "hosted_ci": "GITHUB HOSTED CI NOT VERIFIED",
+  "hosted_ci": { "status": "VERIFIED_FAILED_SECURITY_GATE", "run_id": 39606730459, "commit": "46d7525adeecb88456e8ebc307de96fe3bac0a07", "url": "https://github.com/Hon7374/BeautyCare/actions/runs/39606730459" },
   "b2_run1": "HISTORICAL / INSUFFICIENT RAW EVIDENCE",
   "secret_policy": "No .env files, credentials, database dump, JWTs, or personal-data export; k6 setup_data redacted in package copies",
   "historical_policy": "V1 and fixed-path raw evidence are preserved outside this V2 package and are not overwritten"

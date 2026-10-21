@@ -23,5 +23,5 @@ This package is rebuilt from the synchronized 2026-10-21 repository state. Histo
 - Semgrep current-source: 42 targets, 70 rules, 5 findings, 0 errors, 4 timeouts.
 - Semgrep post-expansion: 41 targets, 70 rules, 5 findings, 0 errors, 4 timeouts.
 - B2 run 1 is absent; B2 runs 2 and 3 are the only verified B2 raw runs.
-- GitHub hosted CI is not verified.
+- GitHub hosted CI is verified on run 39606730459, but the Semgrep security gate failed on five findings; SARIF/raw uploads succeeded.
 - No environment files, database dumps, live credentials, JWTs, or personal-data exports are included.

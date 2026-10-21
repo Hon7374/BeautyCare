@@ -4,13 +4,13 @@ Date: 2026-10-21 (Asia/Saigon)
 
 ## Final status
 
-**GITHUB HOSTED CI NOT VERIFIED.** No `.git`, remote, `gh` authentication, hosted run URL, run ID, commit SHA, or conclusion is available. The workflow file is present and security-gated locally, but its execution and SARIF upload have not been observed on GitHub.
+**GITHUB HOSTED CI VERIFIED — SECURITY GATE FAILED.** Run `39606730459` executed on commit `46d7525adeecb88456e8ebc307de96fe3bac0a07`; the scan step failed on five Semgrep findings, while SARIF and raw-result uploads succeeded. [Run URL](https://github.com/Hon7374/BeautyCare/actions/runs/39606730459).
 
 ## Final status
 
-`GITHUB ACTIONS EXECUTION NOT VERIFIED`.
+`GITHUB ACTIONS EXECUTION VERIFIED — SECURITY GATE FAILED`.
 
-The workspace has no `.git` directory, no configured remote, no GitHub repository identity, and no `gh` CLI available. Consequently there is no defensible repository URL, commit SHA, workflow run ID, run URL, hosted log, or hosted artifact to report. No hosted execution is claimed.
+The repository is now `Hon7374/BeautyCare`. The hosted run, commit SHA, run URL, job URL, step conclusions, and upload conclusions are available in the GitHub Actions API and run page. The failure is retained as the true security-gate result; it is not converted into a pass claim.
 
 ## Local repository and tool inspection
 
@@ -40,13 +40,13 @@ The workflow is configured but does not pin the Semgrep container to an immutabl
 | Timeout coverage | All analysis completes | 4 fixpoint timeouts in raw JSON | Same JSON | LIMITATION |
 | Gate behavior | Findings/errors fail job | `--error`; no `continue-on-error` | Workflow source | PASS configured |
 | JSON/SARIF export | Both formats retained | Both files present | Semgrep current-source directory | PASS locally |
-| Hosted run | Real GitHub run with URL/SHA | No repository identity or hosted run available | Workspace inspection | NOT VERIFIED |
+| Hosted run | Real GitHub run with URL/SHA | Run 39606730459 on commit `46d7525`; scan failed on five findings; uploads succeeded | [GitHub Actions run](https://github.com/Hon7374/BeautyCare/actions/runs/39606730459) | VERIFIED — FAILED GATE |
 
 The separate local rerun failed before scanning because Semgrep could not open the Windows certificate store (`CertOpenSystemStore returned NULL`). It is retained at `raw-results/semgrep-ci/20261021-1112/semgrep-rerun-attempt.log` and is not substituted for the successful source-state scan.
 
 ## Reproduction and reporting rule
 
-Before making a hosted-CI claim, connect the repository or provide a checkout with `.git` metadata, run the workflow on GitHub, and preserve the exact URL, commit SHA, job conclusion, raw JSON, SARIF and artifact download identity. Until then the correct claim is configured and locally validated, not GitHub-executed.
+The hosted-CI claim is now supported by the exact run URL, commit SHA, job conclusion, and upload-step conclusions. The correct result is `FAILED GATE` because five Semgrep findings remain; it is not a clean or passing CI result.
 
 ## Academic readiness statement
 
