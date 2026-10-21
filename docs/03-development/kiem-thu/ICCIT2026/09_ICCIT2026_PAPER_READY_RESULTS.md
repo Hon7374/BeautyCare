@@ -2,9 +2,9 @@
 
 ## Current authoritative SAST and CI status — 2026-10-22
 
-The current working tree is verified locally with Semgrep 1.182.0, `p/owasp-top-ten`, and the runtime-generated 42-target JavaScript scope. The worker-serialized scan (`--jobs 1`) reports 0 findings, 0 scanner errors, 0 skipped rules, and 0 `time.fixpoint_timeouts`; the fail-closed security gate reports `PASS`, exit 0. The same full scope passed three additional `--jobs 1` repetitions. Smoke is 68/68, focused sanitizer/payment regression is 7/7, database security/payment regression is 9/9, and the security-gate suite is 14/14. This is a local result; post-fix GitHub Actions remains `NOT VERIFIED` because no new commit was pushed.
+The current source state is verified locally and in GitHub Actions with Semgrep 1.182.0, `p/owasp-top-ten`, and the runtime-generated 42-target JavaScript scope. The worker-serialized scan (`--jobs 1`) reports 0 findings, 0 scanner errors, 0 skipped rules, and 0 `time.fixpoint_timeouts`; the fail-closed security gate reports `PASS`, exit 0. The same full scope passed three additional `--jobs 1` repetitions. Smoke is 68/68, focused sanitizer/payment regression is 7/7, database security/payment regression is 9/9, and the security-gate suite is 14/14. Hosted PR run `39694608906` also completed successfully on commit `1c7a6a67645e15142b0fa2933316f6f68c5adc5a`.
 
-Primary current artifacts are under `raw-results/semgrep-remediation/20261022/final-ci-verification/`; the earlier worker-count and remediation evidence remains under `analysis/`. The worker-count diagnostics show that higher parallelism is nondeterministic for this taint workload, so `--jobs 1` is treated as a configuration remediation only because it preserves all 42 targets and the same OWASP ruleset. Zero findings, complete static-analysis coverage, a passing local gate, hosted CI execution, and production security are distinct claims.
+Primary current artifacts are under `raw-results/semgrep-remediation/20261022/final-ci-verification/` and the downloaded hosted artifact under `raw-results/semgrep-remediation/20261022/hosted-run-39694608906/`; the earlier worker-count and remediation evidence remains under `analysis/`. The worker-count diagnostics show that higher parallelism is nondeterministic for this taint workload, so `--jobs 1` is treated as a configuration remediation only because it preserves all 42 targets and the same OWASP ruleset. Zero findings, complete static-analysis coverage, hosted CI execution, and production security are distinct claims.
 
 ## Abstract
 
@@ -48,7 +48,7 @@ The evidence supports the effectiveness of the tested local controls against the
 
 ## 10. Threats to validity
 
-The experiments use one local host and one MySQL test instance. They do not model network partitions, multiple application nodes, provider-side retries, live credentials, production observability, disaster recovery, or long-term workload behavior. Semgrep timeouts leave analysis blind spots. GitHub Actions was executed on commit `46d7525`, but its security gate failed on five findings; this verifies CI execution, not a clean scan. Missing B2 run 1 limits replication claims.
+The experiments use one local host and one MySQL test instance. They do not model network partitions, multiple application nodes, provider-side retries, live credentials, production observability, disaster recovery, or long-term workload behavior. Historical Semgrep timeout-bearing runs are retained for provenance; the current serial configuration has zero fixpoint timeouts in both local and hosted artifacts. The historical run `39607269350` failed on five findings, while hosted post-fix run `39694608906` passed the security gate. Missing B2 run 1 limits replication claims.
 
 ## Remediation addendum — 2026-10-22
 
@@ -62,6 +62,6 @@ BeautyCare's reviewed local implementation passed the final 70-test security inv
 
 ## Current evidence traceability
 
-The current JSON/SARIF pair, invocation metadata, expected scope, worker-count comparison, gate summary, and regression logs are included in `raw-results/semgrep-remediation/20261022/`. The smallest target-level timeout reproduction remains `admin.js + auth.js`; the full-scope worker-serialized configuration removes the observed fixpoint timeouts without changing scope or rules. Hosted post-fix CI remains `NOT VERIFIED` pending an approved push.
+The current JSON/SARIF pair, invocation metadata, expected scope, worker-count comparison, gate summary, regression logs, and downloaded hosted artifact are included in `raw-results/semgrep-remediation/20261022/`. The smallest target-level timeout reproduction remains `admin.js + auth.js`; the full-scope worker-serialized configuration removes the observed fixpoint timeouts without changing scope or rules. Hosted post-fix CI is verified by PR run `39694608906`; its gate summary is `PASS` and its artifact digest is recorded in report 39.
 
 Detailed evidence is retained in reports 24–27, the synchronized reports 08, 10, 15, 19–23, and the V2 evidence archive. Primary raw paths include `raw-results/security-test-coverage/`, `raw-results/k6-booking/`, `raw-results/payment-atomicity/`, `raw-results/vnpay-ipn/`, and `raw-results/semgrep/`. The archive excludes environment files, secrets, tokens, database dumps, and personal-data exports.

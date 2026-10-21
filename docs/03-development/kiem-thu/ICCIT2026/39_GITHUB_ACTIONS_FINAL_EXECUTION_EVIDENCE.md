@@ -9,10 +9,11 @@ Date: 2026-10-22 (Asia/Saigon)
 | Repository | `https://github.com/Hon7374/BeautyCare` |
 | Base commit | `761b46462cd2a0f8d44610b35ea60c0d4a6e3f7c` |
 | Verification branch | `fix/semgrep-ci-final-verification` |
-| Hosted commit | Pending branch push and pull-request execution |
+| Hosted commit | `1c7a6a67645e15142b0fa2933316f6f68c5adc5a` |
+| Pull request | `https://github.com/Hon7374/BeautyCare/pull/1` |
 | Source changes | Shared HTML sanitizer, fail-closed Semgrep gate, XSS regression tests, and Semgrep workflow worker serialization |
 
-The working tree contains unrelated user changes and generated evidence files. Only the source, workflow, security gate, directly related tests, reproducibility MRE, and required reports are intended for the verification branch.
+Only the source, workflow, security gate, directly related tests, reproducibility MRE, and required reports were committed to the verification branch. The unrelated `README.md` working-tree change and generated root artifacts were not staged or pushed.
 
 ## 2. Local verification before push
 
@@ -39,25 +40,53 @@ The database run used a process-only test secret; no secret value was written to
 
 ## 3. GitHub Actions execution
 
-At report creation time, hosted execution is intentionally pending. No hosted run, URL, artifact identity, or conclusion is claimed until the branch is pushed and a pull request triggers `.github/workflows/semgrep.yml`. The historical run `39607269350` is not valid evidence for this source revision.
+| Field | Hosted result |
+|---|---|
+| Workflow | `Semgrep security scan` |
+| Event | `pull_request` |
+| Run | `39694608906` |
+| URL | `https://github.com/Hon7374/BeautyCare/actions/runs/39694608906` |
+| Head SHA | `1c7a6a67645e15142b0fa2933316f6f68c5adc5a` |
+| Job | `Semgrep OWASP scan` / `119548832344` |
+| Conclusion | `success` |
+| Security gate | `PASS`, exit 0 |
+| Artifact | `semgrep-results`, ID `12389249672` |
+| Artifact digest | `sha256:ebd9dcebd98a1c37fa9cc3601bb2fcc5d7d0a3070783d35fcd1f259d0c77c63a` |
+
+The job steps for checkout, Semgrep scan, SARIF upload, and raw-result upload all completed successfully. The historical run `39607269350` remains a separate pre-fix failure and is not used as evidence for this source revision.
 
 ## 4. Local versus hosted comparison
 
 | Metric | Local | GitHub Actions |
 |---|---:|---:|
-| Commit SHA | Pending branch commit | Pending hosted run |
-| Semgrep version | 1.182.0 | Pending |
-| Ruleset | `p/owasp-top-ten` | Pending |
-| Targets | 42 | Pending |
-| Rules | 70 | Pending |
-| Findings | 0 | Pending |
-| Scanner errors | 0 | Pending |
-| Fixpoint timeouts | 0 | Pending |
-| Gate | PASS, exit 0 | Pending |
+| Commit SHA | `1c7a6a67645e15142b0fa2933316f6f68c5adc5a` | `1c7a6a67645e15142b0fa2933316f6f68c5adc5a` |
+| Semgrep version | 1.182.0 | 1.182.0 |
+| Ruleset | `p/owasp-top-ten` | `p/owasp-top-ten` |
+| Targets | 42 | 42 |
+| Rules | 70 | 70 |
+| Findings | 0 | 0 |
+| Scanner errors | 0 | 0 |
+| Skipped rules | 0 | 0 |
+| Fixpoint timeouts | 0 | 0 |
+| Gate | PASS, exit 0 | PASS, exit 0 |
+| SARIF results | 0 | 0 |
 
-These columns must be updated from GitHub’s actual job log and downloaded JSON/SARIF artifacts, not inferred from the local run.
+The normalized target sets are equal: 42 local targets and 42 hosted targets, with no missing or unexpected path. The local and hosted SARIF files are byte-identical. The JSON files are semantically equivalent for scan outcome and gate metrics but have different byte hashes because runtime/provenance fields differ; this is recorded in `hosted-run-39694608906/local-hosted-comparison.json` rather than incorrectly claiming byte identity.
 
-## 5. Academic conclusion
+## 5. Hosted artifact paths
 
-The local evidence is sufficient to report reproducible source-state verification: the complete 42-target OWASP scan, fail-closed gate, regression tests, and database checks passed. Hosted CI execution, production security, and live-provider reliability remain separate claims and require their own evidence. After the pull-request run is collected, this report will be updated with the exact commit SHA, run ID, URL, job conclusion, gate result, and artifact names.
+The downloaded artifact and API/job metadata are preserved under:
 
+`raw-results/semgrep-remediation/20261022/hosted-run-39694608906/`
+
+It contains the hosted JSON, SARIF, expected target list, invocation metadata, gate summary, hosted run metadata, hosted job metadata, artifact API response, and job log. The corresponding fresh local evidence is under:
+
+`raw-results/semgrep-remediation/20261022/final-ci-verification/`
+
+The comparison file records `target_set_equal: true`, `local_gate_status: PASS`, `hosted_gate_status: PASS`, `sarif_byte_hash_equal: true`, and `json_byte_hash_equal: false`.
+
+## 6. Academic conclusion
+
+The evidence supports a bounded claim: the BeautyCare backend's complete 42-target OWASP scan, using Semgrep 1.182.0 and the fail-closed serial-worker configuration, produced no findings, scanner errors, skipped rules, or fixpoint timeouts in both local and hosted execution. The hosted PR job and evidence artifact are independently verified for the exact source commit above. This does not prove zero vulnerabilities, production security, live-provider reliability, or distributed-system behavior.
+
+Historical findings and timeout-bearing artifacts remain preserved and clearly labeled; no finding was suppressed and no target was removed to obtain the current result.

@@ -6,7 +6,7 @@ Date: 2026-10-22 (Asia/Saigon)
 
 The timeout problem was resolved locally by serializing Semgrep workers with `--jobs 1`. This is a configuration remediation, not a reduction of the analyzed source or rule set. The final scan used Semgrep 1.182.0, the original `p/owasp-top-ten` ruleset, the exact runtime-generated 42-file JavaScript scope, and 70 executed rules. Its JSON and SARIF results contain zero findings, zero scanner errors, zero skipped rules, and zero fixpoint timeouts. The fail-closed gate returned `PASS`, exit code 0.
 
-The remediation is prepared but not pushed. Therefore GitHub-hosted post-fix CI is `NOT VERIFIED`; the historical run `39607269350` is not evidence for this source state.
+The remediation was committed on branch `fix/semgrep-ci-final-verification` at `1c7a6a67645e15142b0fa2933316f6f68c5adc5a` and verified by pull-request run `39694608906`. The historical run `39607269350` is not evidence for this source state, and no main-branch merge is claimed.
 
 The final pre-push verification rerun is stored under `raw-results/semgrep-remediation/20261022/final-ci-verification/` and independently records the same 42/42, 0/0/0/0 Semgrep result, gate PASS, 14/14 gate tests, 7/7 focused tests, 68/68 smoke tests, 9/9 database tests, and ESLint PASS.
 
@@ -14,7 +14,7 @@ The final pre-push verification rerun is stored under `raw-results/semgrep-remed
 
 | Metric | Before | After |
 |---|---:|---:|
-| Source revision | `761b46462cd2a0f8d44610b35ea60c0d4a6e3f7c` base plus uncommitted remediation | Current uncommitted working tree; no new commit |
+| Source revision | `1c7a6a67645e15142b0fa2933316f6f68c5adc5a` on `fix/semgrep-ci-final-verification` | Hosted PR run verified this revision |
 | Semgrep version | 1.182.0 | 1.182.0 |
 | Rule configuration | `p/owasp-top-ten` | `p/owasp-top-ten` |
 | Selected targets | 42 | 42/42 |
@@ -25,7 +25,7 @@ The final pre-push verification rerun is stored under `raw-results/semgrep-remed
 | Fixpoint timeouts | 4 | 0 |
 | Security gate | `INCOMPLETE_ANALYSIS`, exit 1 | `PASS`, exit 0 |
 | Regression tests | PASS | PASS: smoke 68/68, focused 7/7, DB 9/9, gate 14/14 |
-| Hosted GitHub Actions | NOT VERIFIED | NOT VERIFIED |
+| Hosted GitHub Actions | NOT VERIFIED | PASS: run `39694608906` |
 
 The “before” zero-finding value is intentionally retained from the latest timeout-bearing scan; it did not constitute a complete analysis because `time.fixpoint_timeouts` contained four entries. Older pre-remediation artifacts with five findings remain historical and are not overwritten.
 
@@ -78,18 +78,18 @@ These groups are separate evidence units and are not added together as one artif
 
 ## Final Semgrep artifacts
 
-- JSON: `raw-results/semgrep-remediation/20261022/analysis/semgrep/after-worker-serialization/semgrep.json`
-- SARIF: `raw-results/semgrep-remediation/20261022/analysis/semgrep/after-worker-serialization/semgrep.sarif`
-- Gate summary: `raw-results/semgrep-remediation/20261022/analysis/semgrep/after-worker-serialization/semgrep-gate-summary.json`
-- Gate console: `raw-results/semgrep-remediation/20261022/analysis/semgrep/after-worker-serialization/semgrep-gate-final.console.log`
-- Expected scope: `raw-results/semgrep-remediation/20261022/analysis/semgrep/after-worker-serialization/target-list-42.txt`
-- Invocation metadata: `raw-results/semgrep-remediation/20261022/analysis/semgrep/after-worker-serialization/semgrep-invocation.json`
+- Local JSON: `raw-results/semgrep-remediation/20261022/final-ci-verification/semgrep.json`
+- Local SARIF: `raw-results/semgrep-remediation/20261022/final-ci-verification/semgrep.sarif`
+- Local gate summary: `raw-results/semgrep-remediation/20261022/final-ci-verification/semgrep-gate-summary.json`
+- Local expected scope: `raw-results/semgrep-remediation/20261022/final-ci-verification/target-list-42.txt`
+- Local invocation metadata: `raw-results/semgrep-remediation/20261022/final-ci-verification/semgrep-invocation.json`
+- Hosted artifact directory: `raw-results/semgrep-remediation/20261022/hosted-run-39694608906/`
 
 ## GitHub Actions status
 
-No post-fix commit, branch push, pull request, or workflow dispatch was performed. Consequently there is no new commit SHA, run ID, run URL, hosted conclusion, or hosted artifact digest to report. The correct status is `NOT VERIFIED`, not `CI VERIFIED — PASS`. The old run `39607269350` remains historical pre-fix evidence only.
+Post-fix verification was performed through pull request `https://github.com/Hon7374/BeautyCare/pull/1`. Run `39694608906` completed with conclusion `success` on commit `1c7a6a67645e15142b0fa2933316f6f68c5adc5a`; URL: `https://github.com/Hon7374/BeautyCare/actions/runs/39694608906`. Job `Semgrep OWASP scan` completed successfully, the fail-closed gate returned `PASS`, and artifact `semgrep-results` (ID `12389249672`) was downloaded with digest `sha256:ebd9dcebd98a1c37fa9cc3601bb2fcc5d7d0a3070783d35fcd1f259d0c77c63a`. The old run `39607269350` remains historical pre-fix evidence only.
 
 ## Research interpretation
 
-The result supports the following bounded statement: after a fail-closed gate was implemented and parallel taint-analysis instability was controlled with a pinned serial worker configuration, the BeautyCare backend’s complete 42-target local OWASP scan produced no findings, scanner errors, skipped rules, or fixpoint timeouts, with reproducible local raw JSON/SARIF evidence. This does not prove zero vulnerabilities, production security, hosted CI success, or live-provider reliability. Those claims require separate evidence.
+The result supports the following bounded statement: after a fail-closed gate was implemented and parallel taint-analysis instability was controlled with a pinned serial worker configuration, the BeautyCare backend’s complete 42-target OWASP scan produced no findings, scanner errors, skipped rules, or fixpoint timeouts in both local and hosted execution, with reproducible raw JSON/SARIF evidence. This does not prove zero vulnerabilities, production security, or live-provider reliability. Those claims require separate evidence.
 
