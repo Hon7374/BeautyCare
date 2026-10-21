@@ -4,7 +4,7 @@ Date: 2026-10-21 (Asia/Saigon)
 
 ## V2 provenance boundary
 
-V2 is rebuilt from the current synchronized reports and sanitized raw evidence. It records the final 70-test inventory, the 41-target post-expansion Semgrep scan alongside the preserved 42-target current-source scan, and the absence of B2 run 1. Historical packages remain unchanged; no raw evidence was overwritten.
+V2 is rebuilt from the current synchronized reports and sanitized raw evidence. It records the final 70-test inventory, the 41-target post-expansion Semgrep scan alongside the preserved 42-target current-source scan, the absence of B2 run 1, and hosted run `39606730459` on commit `46d7525`. Historical packages remain unchanged; no raw evidence was overwritten.
 
 ## Audit conclusion
 
@@ -52,7 +52,7 @@ The two VNPay integration sources no longer contain a literal secret. The final 
 | Separately bundled raw-results archive | Not present anywhere under the repository | Recorded as absent; no substitute invented |
 | Booking B2 run1 | No `b2-final-run1` JSON, console or DB assertion found; only B2 run2/run3 exist | Report run2/run3 only; do not claim three B2 runs |
 | Git commit/remote | No `.git` or remote metadata | Commit/SHA/URL marked unavailable |
-| GitHub-hosted Semgrep run | No `gh`, repository identity or hosted logs | CI marked configured/local-validated, hosted execution not verified |
+| GitHub-hosted Semgrep run | Hosted URL, commit SHA, job conclusion | Run 39606730459 executed; scan failed on five findings; SARIF/raw uploads succeeded |
 | Semgrep complete coverage | 4 fixpoint timeouts and 5 residual findings | SAST remains partial; no clean-scan claim |
 
 ## Final consistency controls
@@ -61,4 +61,4 @@ The final package contains an evidence index, a consistency report, run manifest
 
 ## Academic provenance statement
 
-The evidence supports bounded claims about the tested local implementation: security regression behavior, local MySQL payment idempotency/atomicity, booking contention invariants, and local Semgrep execution. It does not support claims of independent duplicate archives, live VNPay delivery reliability, complete static-analysis coverage, a missing B2 run1, or a GitHub-hosted execution that was not observed.
+The evidence supports bounded claims about the tested local implementation and the hosted CI execution. It does not support claims of independent duplicate archives, live VNPay delivery reliability, complete static-analysis coverage, a missing B2 run1, or a passing/clean GitHub security scan.
